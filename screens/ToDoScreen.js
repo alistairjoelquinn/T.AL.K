@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function ToDoScreen() {
     return (
         <View style={styles.screen}>
-            <Text>ToDoScreen</Text>
+            <Text>To Do Screen</Text>
         </View>
     );
 }

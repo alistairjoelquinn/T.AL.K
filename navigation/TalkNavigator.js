@@ -12,6 +12,7 @@ import ToDoScreen from '../screens/ToDoScreen';
 import ToDoInputScreen from '../screens/ToDoInputScreen';
 import ShoppingScreen from '../screens/ShoppingScreen'
 import ShoppingInputScreen from '../screens/ShoppingInputScreen'
+import Colors from '../constants/Colors';
 
 const defaultStackOptions = {
     headerStyle: {
@@ -67,7 +68,7 @@ const config = {
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return <Ionicons 
-                    name='ios-list' 
+                    name='ios-star' 
                     size={25} 
                     color={tabInfo.tintColor}
                 />;
@@ -81,7 +82,7 @@ const config = {
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return <Ionicons 
-                    name='ios-pizza' 
+                    name='ios-star' 
                     size={25} 
                     color={tabInfo.tintColor}
                 />;
