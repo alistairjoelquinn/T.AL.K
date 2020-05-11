@@ -9,6 +9,10 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 import DiaryScreen from '../screens/DiaryScreen';
 import DiaryInputScreen from '../screens/DiaryInputScreen';
+import ToDoScreen from '../screens/ToDoScreen';
+import ToDoInputScreen from '../screens/ToDoInputScreen';
+import ShoppingScreen from '../screens/ShoppingScreen'
+import ShoppingInputScreen from '../screens/ShoppingInputScreen'
 
 const defaultStackOptions = {
     headerStyle: {
@@ -26,6 +30,20 @@ const defaultStackOptions = {
 const DiaryNavigator = createStackNavigator({
     Diary: DiaryScreen,
     Diary: DiaryInputScreen
+}, {
+    defaultNavigationOptions: defaultStackOptions
+});
+
+const ToDoNavigator = createStackNavigator({
+    ToDo: ToDoScreen,
+    ToDoInput: ToDoInputScreen
+}, {
+    defaultNavigationOptions: defaultStackOptions
+});
+
+const ShoppingNavigator = createStackNavigator({
+    Shopping: ShoppingScreen,
+    ShoppingInput: ShoppingInputScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
 });
