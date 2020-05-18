@@ -31,7 +31,7 @@ const defaultStackOptions = {
 
 const DiaryNavigator = createStackNavigator({
     Diary: DiaryScreen,
-    Diary: DiaryInputScreen
+    DiaryInput: DiaryInputScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
 });

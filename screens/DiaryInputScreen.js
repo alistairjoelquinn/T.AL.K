@@ -9,6 +9,10 @@ export default function DiaryInputScren() {
     );
 }
 
+DiaryInputScren.navigationOptions = {
+    headerTitle: 'Input Something New'
+}
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
