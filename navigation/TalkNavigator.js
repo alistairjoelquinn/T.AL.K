@@ -19,10 +19,10 @@ const defaultStackOptions = {
         backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white'
     },
     headerTitleStyle: {
-        fontFamily: 'arial'
+        fontFamily: 'sans-serif'
     },
     headerBackTitleStyle: {
-        fontFamily: 'arial'
+        fontFamily: 'sans-serif'
     },
     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
@@ -38,14 +38,24 @@ const ToDoNavigator = createStackNavigator({
     ToDo: ToDoScreen,
     ToDoInput: ToDoInputScreen
 }, {
-    defaultNavigationOptions: defaultStackOptions
+    defaultNavigationOptions: {
+        ...defaultStackOptions,
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Colors.accentColor : 'white'
+        }
+    }
 });
 
 const ShoppingNavigator = createStackNavigator({
     Shopping: ShoppingScreen,
     ShoppingInput: ShoppingInputScreen
 }, {
-    defaultNavigationOptions: defaultStackOptions
+    defaultNavigationOptions: {
+        ...defaultStackOptions,
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Colors.three : 'white'
+        }
+    }
 });
 
 const config = {
@@ -60,7 +70,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.primary,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'arial'}}>Home</Text> : 'Home'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>Home</Text> : 'Home'
         }
     },
     ToDo: {
@@ -74,7 +84,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.accentColor,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'arial'}}>To-Do</Text> : 'To-Do'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>To-Do</Text> : 'To-Do'
         }
     },
     Shopping: {
@@ -87,8 +97,8 @@ const config = {
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.accentColor,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'arial'}}>Shopping</Text> : 'Shopping'
+            tabBarColor: Colors.three,
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>Shopping</Text> : 'Shopping'
         }
     }
 };
@@ -107,7 +117,7 @@ const MainTabNavigator =
             createBottomTabNavigator(config, 
                 {tabBarOptions: {
                     labelStyle: {
-                        fontFamily: 'arial'
+                        fontFamily: 'sans-serif'
                     },
                     activeTintColor: Colors.accentColor
                 }});
