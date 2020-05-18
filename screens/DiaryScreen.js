@@ -9,6 +9,21 @@ export default function DiaryScreen() {
     );
 }
 
+DiaryScreen.navigationOptions = navData => {
+    return {
+        headerTitle: 'Home',
+        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item 
+                title='Cart' 
+                iconName={'ios-add'} 
+                onPress={() => {
+                    navData.navigation.navigate('DiaryInput');
+                }}
+            />
+        </HeaderButtons>
+    };
+};
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,

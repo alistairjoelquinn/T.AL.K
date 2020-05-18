@@ -30,7 +30,7 @@ const defaultStackOptions = {
 };
 
 const DiaryNavigator = createStackNavigator({
-    Home: DiaryScreen,
+    Diary: DiaryScreen,
     Diary: DiaryInputScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
@@ -99,7 +99,7 @@ const MainTabNavigator =
     Platform.OS === 'android' 
         ? 
             createMaterialBottomTabNavigator(config, {
-                activeColor: 'white',
+                activeColor: Colors.paleText,
                 shifting: true,
                 barStyle: {
                     backgroundColor: Colors.primary
