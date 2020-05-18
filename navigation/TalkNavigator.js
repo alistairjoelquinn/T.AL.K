@@ -16,7 +16,9 @@ import Colors from '../constants/Colors';
 
 const defaultStackOptions = {
     headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white'
+        backgroundColor: Platform.OS === 'android' ? Colors.grey : 'white',
+        shadowColor: 'transparent',
+        elevation: 0
     },
     headerTitleStyle: {
         fontFamily: 'sans-serif'
@@ -24,11 +26,11 @@ const defaultStackOptions = {
     headerBackTitleStyle: {
         fontFamily: 'sans-serif'
     },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
+    headerTintColor: Platform.OS === 'android' ? Colors.paleText : Colors.primary
 };
 
 const DiaryNavigator = createStackNavigator({
-    Diary: DiaryScreen,
+    Home: DiaryScreen,
     Diary: DiaryInputScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
@@ -38,24 +40,14 @@ const ToDoNavigator = createStackNavigator({
     ToDo: ToDoScreen,
     ToDoInput: ToDoInputScreen
 }, {
-    defaultNavigationOptions: {
-        ...defaultStackOptions,
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.accentColor : 'white'
-        }
-    }
+    defaultNavigationOptions: defaultStackOptions
 });
 
 const ShoppingNavigator = createStackNavigator({
     Shopping: ShoppingScreen,
     ShoppingInput: ShoppingInputScreen
 }, {
-    defaultNavigationOptions: {
-        ...defaultStackOptions,
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.three : 'white'
-        }
-    }
+    defaultNavigationOptions: defaultStackOptions
 });
 
 const config = {
@@ -64,12 +56,12 @@ const config = {
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return <Ionicons 
-                    name='ios-star' 
+                    name='ios-calendar' 
                     size={25} 
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.primary,
+            tabBarColor: Colors.grey,
             tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>Home</Text> : 'Home'
         }
     },
@@ -78,12 +70,12 @@ const config = {
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return <Ionicons 
-                    name='ios-star' 
+                    name='ios-list' 
                     size={25} 
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.accentColor,
+            tabBarColor: Colors.grey,
             tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>To-Do</Text> : 'To-Do'
         }
     },
@@ -92,12 +84,12 @@ const config = {
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return <Ionicons 
-                    name='ios-star' 
+                    name='ios-basket' 
                     size={25} 
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.three,
+            tabBarColor: Colors.grey,
             tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>Shopping</Text> : 'Shopping'
         }
     }
@@ -119,7 +111,7 @@ const MainTabNavigator =
                     labelStyle: {
                         fontFamily: 'sans-serif'
                     },
-                    activeTintColor: Colors.accentColor
+                    activeTintColor: Colors.two
                 }});
 
 export default createAppContainer(MainTabNavigator);

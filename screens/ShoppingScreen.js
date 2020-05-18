@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function ShoppingScreen() {
     return (
         <View style={styles.screen}>
-            <Text> Shopping Screen</Text>
+            <Text style={styles.text}> Shopping Screen</Text>
         </View>
     );
 }
@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#1c1c1c'
+    },
+    text: {
+        color: '#d2d2d2'
     }
 });
