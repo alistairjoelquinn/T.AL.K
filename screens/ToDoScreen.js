@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
-import Item from '../components/item';
+import { StyleSheet, View, FlatList, Button } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
+import HeaderButton from '../components/HeaderButton';
+import InputItem from '../components/item';
 import InputContainer from '../components/input-container';
 
-export default function App() {
+export default function ToDoScreen() {
     const [notesList, setNotesList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const newItem = item => {
@@ -29,9 +32,6 @@ export default function App() {
 
     return (
         <View style={styles.screen}>
-            <View style={styles.banner}>
-                <Text style={styles.text}>notes...</Text>
-            </View>
             <View style={styles.button}>
                 <Button 
                     color='#c192ff'
@@ -47,7 +47,7 @@ export default function App() {
             <FlatList 
                 data={notesList} 
                 renderItem={note => 
-                    <Item 
+                    <InputItem 
                         onDelete={() => {
                             removeItem(note.item.id);
                         }}
@@ -57,7 +57,21 @@ export default function App() {
             />
         </View>
     );
-}
+};
+
+ToDoScreen.navigationOptions = navData => {
+    return {
+        headerTitle: 'To Do List',
+        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item 
+                title='Input' 
+                iconName={'ios-add'} 
+                onPress={() => {
+                }}
+            />
+        </HeaderButtons>
+    };
+};
 
 const styles = StyleSheet.create({
     screen: {
