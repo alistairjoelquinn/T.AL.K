@@ -9,7 +9,6 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import DiaryScreen from '../screens/DiaryScreen';
 import DiaryInputScreen from '../screens/DiaryInputScreen';
 import ToDoScreen from '../screens/ToDoScreen';
-import ToDoInputScreen from '../screens/ToDoInputScreen';
 import ShoppingScreen from '../screens/ShoppingScreen'
 import ShoppingInputScreen from '../screens/ShoppingInputScreen'
 import Colors from '../constants/Colors';
@@ -37,8 +36,7 @@ const DiaryNavigator = createStackNavigator({
 });
 
 const ToDoNavigator = createStackNavigator({
-    ToDo: ToDoScreen,
-    ToDoInput: ToDoInputScreen
+    ToDo: ToDoScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
 });
