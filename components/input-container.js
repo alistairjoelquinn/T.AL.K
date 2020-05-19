@@ -36,7 +36,7 @@ export default function InputContainer({ newItem, visible, cancelItemInput }) {
                     </View>
                     <View style={styles.button}>
                         <Button 
-                            color='#c192ff'
+                            color={Colors.palePurple}
                             title='ADD' 
                             onPress={buttonTouch}
                         />
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 30,
         backgroundColor: '#d2d2d2',
-        color: '#1c1c1c'
+        color: '#1c1c1c',
+        fontSize: 16
     },
     buttonContainer: {
         width: '55%',

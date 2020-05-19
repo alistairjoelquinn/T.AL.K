@@ -5,10 +5,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
 import InputContainer from '../components/input-container';
+import Colors from '../constants/Colors';
 
 export default function ToDoScreen({ navigation }) {
     const [notesList, setNotesList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+   
     const newItem = item => {
         if(item.length === 0 || item === '') {
             return;
@@ -26,7 +28,6 @@ export default function ToDoScreen({ navigation }) {
             [
               {
                 text: "No",
-                onPress: () => console.log("Cancel Pressed"),
                 style: "cancel"
               },
               { text: "Yes", onPress: () =>  setNotesList(notesList => {
@@ -55,13 +56,23 @@ export default function ToDoScreen({ navigation }) {
             />
             <FlatList 
                 data={notesList} 
-                renderItem={note => 
-                    <InputItem 
+                renderItem={({item, index}) =>      
+                     <InputItem 
                         onDelete={() => {
-                            removeItem(note.item.id);
+                            removeItem(item.id);
                         }}
-                        content={note.item.value}
-                    />
+                        content={item.value}
+                        color={index % 2 === 1 ? 
+                            {
+                                backgroundColor: Colors.paleYellow,
+                                alignSelf: 'flex-start'
+                            } : 
+                            {
+                                backgroundColor: Colors.palePurple,
+                                alignSelf: 'flex-end'
+                            }
+                        }
+                    /> 
                 }
             />
         </View>
@@ -70,7 +81,6 @@ export default function ToDoScreen({ navigation }) {
 
 ToDoScreen.navigationOptions = navData => {
     const toggle = navData.navigation.getParam('toggle');
-    console.log('toggle: ', toggle);
     return {
         headerTitle: 'To Do List',
         headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
