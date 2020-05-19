@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, Button } from 'react-native';
+import { StyleSheet, View, FlatList, Alert } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
@@ -20,12 +20,25 @@ export default function ToDoScreen({ navigation }) {
         setModalVisible(false);
     };
     const removeItem = itemId => {
-        setNotesList(notesList => {
-            return notesList.filter(item => {
-                return item.id !== itemId;
-            });
-        });
+        Alert.alert(
+            "Remove Item",
+            "Are you sure you want to remove this item?",
+            [
+              {
+                text: "No",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "Yes", onPress: () =>  setNotesList(notesList => {
+                return notesList.filter(item => {
+                    return item.id !== itemId;
+                });
+            })}
+            ],
+            { cancelable: true }
+        );
     };
+
     const cancelItemInput = () => {
         setModalVisible(false);
     }
@@ -35,13 +48,6 @@ export default function ToDoScreen({ navigation }) {
 
     return (
         <View style={styles.screen}>
-            {/* <View style={styles.button}>
-                <Button 
-                    color='#c192ff'
-                    title="Add Something New..."
-                    onPress={() => setModalVisible(true)}
-                />
-            </View> */}
             <InputContainer 
                 newItem={newItem}
                 visible={modalVisible}
@@ -84,21 +90,5 @@ const styles = StyleSheet.create({
         padding: 50,
         backgroundColor: '#1c1c1c',
         height: '100%'
-    },
-    banner: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        paddingBottom: 10,
-        paddingTop: 20,
-        borderBottomColor: '#d2d2d2',
-        borderBottomWidth: 3,
-        marginBottom: 20,
-    },
-    text: {
-        fontSize: 40,
-        color: '#d2d2d2'
-    },
-    button: {
-        marginBottom: 10
     }
 });
