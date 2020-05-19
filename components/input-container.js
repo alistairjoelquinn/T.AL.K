@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Modal } from 'react-native'; 
 
+import Colors from '../constants/Colors';
+
 export default function InputContainer({ newItem, visible, cancelItemInput }) {
     const [item, setItem] = useState('');
     const itemHandler = inputValue => {
@@ -18,7 +20,7 @@ export default function InputContainer({ newItem, visible, cancelItemInput }) {
         >
             <View style={styles.inputContainer}>
                 <TextInput 
-                    placeholder='Talk to me...'
+                    placeholder='What do we need to do?'
                     placeholderTextColor='#1c1c1c'
                     style={styles.inputText}
                     onChangeText={itemHandler}
@@ -28,7 +30,7 @@ export default function InputContainer({ newItem, visible, cancelItemInput }) {
                     <View style={styles.button}>
                         <Button 
                             title="CANCEL"
-                            color="red"
+                            color={Colors.grey}
                             onPress={cancelItemInput}
                         />
                     </View>
@@ -60,15 +62,19 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 30,
         backgroundColor: '#d2d2d2',
-        color: '#1c1c1c',
-        
+        color: '#1c1c1c'
     },
     buttonContainer: {
         width: '55%',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginVertical: 10
     },
     button: {
         width: '40%',
+        borderWidth: 2,
+        borderColor: Colors.paleText,
+        borderRadius: 15,
+        overflow: 'hidden'
     }
 });

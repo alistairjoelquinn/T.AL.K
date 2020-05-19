@@ -4,5 +4,6 @@ export default {
     three: 'green',
     grey: '#1c1c1c',
     paleText: '#d2d2d2',
-    beige: '#faebd7'
+    beige: '#faebd7',
+    paleYellow: '#fff85'
 };
