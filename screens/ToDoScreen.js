@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, Button } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -6,7 +6,7 @@ import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
 import InputContainer from '../components/input-container';
 
-export default function ToDoScreen() {
+export default function ToDoScreen({ navigation }) {
     const [notesList, setNotesList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const newItem = item => {
@@ -29,16 +29,19 @@ export default function ToDoScreen() {
     const cancelItemInput = () => {
         setModalVisible(false);
     }
+    useEffect(() => {
+        navigation.setParams({toggle: setModalVisible});
+    }, []);
 
     return (
         <View style={styles.screen}>
-            <View style={styles.button}>
+            {/* <View style={styles.button}>
                 <Button 
                     color='#c192ff'
                     title="Add Something New..."
                     onPress={() => setModalVisible(true)}
                 />
-            </View>
+            </View> */}
             <InputContainer 
                 newItem={newItem}
                 visible={modalVisible}
@@ -60,6 +63,8 @@ export default function ToDoScreen() {
 };
 
 ToDoScreen.navigationOptions = navData => {
+    const toggle = navData.navigation.getParam('toggle');
+    console.log('toggle: ', toggle);
     return {
         headerTitle: 'To Do List',
         headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
@@ -67,7 +72,8 @@ ToDoScreen.navigationOptions = navData => {
                 title='Input' 
                 iconName={'ios-add'} 
                 onPress={() => {
-                }}
+                    toggle(true);
+                }} 
             />
         </HeaderButtons>
     };
