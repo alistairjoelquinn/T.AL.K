@@ -62,13 +62,13 @@ export default function ToDoScreen({ navigation }) {
                             removeItem(item.id);
                         }}
                         content={item.value}
-                        color={index % 2 === 1 ? 
+                        color={index % 2 === 0 ? 
                             {
-                                backgroundColor: Colors.paleYellow,
+                                borderColor: Colors.paleYellow,
                                 alignSelf: 'flex-start'
                             } : 
                             {
-                                backgroundColor: Colors.palePurple,
+                                borderColor: Colors.palePurple,
                                 alignSelf: 'flex-end'
                             }
                         }
