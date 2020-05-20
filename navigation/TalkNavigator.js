@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer } from 'react-navigation';
 import { Platform, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +9,6 @@ import DiaryScreen from '../screens/DiaryScreen';
 import DiaryInputScreen from '../screens/DiaryInputScreen';
 import ToDoScreen from '../screens/ToDoScreen';
 import ShoppingScreen from '../screens/ShoppingScreen'
-import ShoppingInputScreen from '../screens/ShoppingInputScreen'
 import Colors from '../constants/Colors';
 
 const defaultStackOptions = {
@@ -42,8 +40,7 @@ const ToDoNavigator = createStackNavigator({
 });
 
 const ShoppingNavigator = createStackNavigator({
-    Shopping: ShoppingScreen,
-    ShoppingInput: ShoppingInputScreen
+    Shopping: ShoppingScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
 });

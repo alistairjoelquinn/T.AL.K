@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 export default function ShoppingScreen() {
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}> Shopping Screen</Text>
+            <Image 
+                    source={require('../assets/paper.png')} 
+                    style={styles.image}
+                />
         </View>
     );
 }
@@ -18,5 +21,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#d2d2d2'
+    },
+    image: {
+        width: '80%',
+        height: '100%'
     }
 });
