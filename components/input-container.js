@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Modal } from 'react-native'; 
+import { View, TextInput, Button, StyleSheet, Modal, Platform } from 'react-native'; 
 
 import Colors from '../constants/Colors';
 
@@ -30,7 +30,7 @@ export default function InputContainer({ newItem, visible, cancelItemInput }) {
                     <View style={styles.button}>
                         <Button 
                             title="CANCEL"
-                            color={Colors.grey}
+                            color={Platform.OS === 'android' ? Colors.grey : Colors.paleYellow}
                             onPress={cancelItemInput}
                         />
                     </View>

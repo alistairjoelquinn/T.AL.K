@@ -93,23 +93,14 @@ const config = {
     }
 };
 
-const MainTabNavigator = 
-    Platform.OS === 'android' 
-        ? 
-            createMaterialBottomTabNavigator(config, {
-                activeColor: Colors.paleText,
-                shifting: true,
-                barStyle: {
-                    backgroundColor: Colors.primary
-                }
-            }) 
-        : 
-            createBottomTabNavigator(config, 
-                {tabBarOptions: {
-                    labelStyle: {
-                        fontFamily: 'Arial'
-                    },
-                    activeTintColor: Colors.two
-                }});
+const MainTabNavigator = createMaterialBottomTabNavigator(config, 
+    {
+        activeColor: Colors.paleText,
+        shifting: true,
+        barStyle: {
+            backgroundColor: Colors.primary
+        }
+    }
+);
 
 export default createAppContainer(MainTabNavigator);

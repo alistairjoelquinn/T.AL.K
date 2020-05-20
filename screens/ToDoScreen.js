@@ -65,11 +65,11 @@ export default function ToDoScreen({ navigation }) {
                         color={index % 2 === 0 ? 
                             {
                                 borderColor: Colors.paleYellow,
-                                alignSelf: 'flex-start'
+                                // alignSelf: 'flex-start'
                             } : 
                             {
                                 borderColor: Colors.palePurple,
-                                alignSelf: 'flex-end'
+                                // alignSelf: 'flex-end'
                             }
                         }
                     /> 

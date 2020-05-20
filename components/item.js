@@ -18,7 +18,7 @@ export default function Item({ content, onDelete, color }) {
 
 const styles = StyleSheet.create({
     listItem: {
-        width: '70%',
+        // width: '100%',
         padding: 10,
         marginTop: 10,
         backgroundColor: '#ccc',
