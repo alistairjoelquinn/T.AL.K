@@ -15,17 +15,17 @@ import Colors from '../constants/Colors';
 
 const defaultStackOptions = {
     headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.grey : 'white',
+        backgroundColor: Colors.grey,
         shadowColor: 'transparent',
         elevation: 0
     },
     headerTitleStyle: {
-        fontFamily: 'sans-serif'
+        fontFamily: 'Arial'
     },
     headerBackTitleStyle: {
-        fontFamily: 'sans-serif'
+        fontFamily: 'Arial'
     },
-    headerTintColor: Platform.OS === 'android' ? Colors.paleText : Colors.primary
+    headerTintColor: Colors.paleText
 };
 
 const DiaryNavigator = createStackNavigator({
@@ -60,7 +60,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>Home</Text> : 'Home'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'Arial'}}>Home</Text> : 'Home'
         }
     },
     ToDo: {
@@ -74,7 +74,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>To-Do</Text> : 'To-Do'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'Arial'}}>To-Do</Text> : 'To-Do'
         }
     },
     Shopping: {
@@ -88,7 +88,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'sans-serif'}}>Shopping</Text> : 'Shopping'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'Arial'}}>Shopping</Text> : 'Shopping'
         }
     }
 };
@@ -107,7 +107,7 @@ const MainTabNavigator =
             createBottomTabNavigator(config, 
                 {tabBarOptions: {
                     labelStyle: {
-                        fontFamily: 'sans-serif'
+                        fontFamily: 'Arial'
                     },
                     activeTintColor: Colors.two
                 }});

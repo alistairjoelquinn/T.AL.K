@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'; 
-import Colors from '../constants/Colors';
 
 export default function Item({ content, onDelete, color }) {
     return (

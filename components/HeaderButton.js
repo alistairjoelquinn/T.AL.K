@@ -11,7 +11,7 @@ export default function CustomHeaderButton(props) {
             { ...props }
             IconComponent={Ionicons}
             iconSize={23}
-            color={Platform.OS === 'android' ? 'white' : Colors.grey}
+            color={Colors.paleText}
         />
     );
 };
