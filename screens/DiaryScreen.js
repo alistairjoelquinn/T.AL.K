@@ -9,9 +9,9 @@ export default function DiaryScreen() {
     return (
         <View style={styles.screen}>
             <View style={styles.container}>
-                <DiaryUserStrip />
-                <DiaryUserStrip />
-                <DiaryUserStrip />
+                <DiaryUserStrip name="Teniya" />
+                <DiaryUserStrip name="Alistair" />
+                <DiaryUserStrip name="Koen" />
             </View>
         </View>
     );
