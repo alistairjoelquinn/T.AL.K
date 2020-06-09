@@ -1,18 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+const SingleEntry = props => {
+    return (
+        <View style={{ ...styles.item,  ...props.bgc }}></View>
+    );
+};
+
 const DiaryUserStrip = props => {
     return(
         <View style={styles.container}>
             <Text style={styles.name}>{props.name}</Text>
-            <View style={{ ...styles.item, backgroundColor: '#f3f7cd'}}></View>
-            <View style={{ ...styles.item, backgroundColor: '#d8de9e'}}></View>
-            <View style={{ ...styles.item, backgroundColor: '#e0d770'}}></View>
-            <View style={{ ...styles.item, backgroundColor: '#e0b970'}}></View>
-            <View style={{ ...styles.item, backgroundColor: '#e09570'}}></View>
-            <View style={{ ...styles.item, backgroundColor: '#e06651'}}></View>
-            <View style={{ ...styles.item, backgroundColor: '#db3535'}}></View>
-            
+            <SingleEntry bgc={{backgroundColor: '#f3f7cd'}} />
+            <SingleEntry bgc={{backgroundColor: '#d8de9e'}} />
+            <SingleEntry bgc={{backgroundColor: '#e0d770'}} />
+            <SingleEntry bgc={{backgroundColor: '#e0b970'}} />
+            <SingleEntry bgc={{backgroundColor: '#e09570'}} />
+            <SingleEntry bgc={{backgroundColor: '#e06651'}} />
+            <SingleEntry bgc={{backgroundColor: '#db3535'}} />
         </View>
     );
 };
