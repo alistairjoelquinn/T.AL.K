@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "T.AL.K",
-    "slug": "T.AL.K",
+    "name": "talk",
+    "slug": "talk",
     "platforms": [
       "ios",
       "android",

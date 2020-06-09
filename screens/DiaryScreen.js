@@ -3,11 +3,14 @@ import { View, Text, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
+import DiaryUserStrip from '../components/DiaryUserStrip';
 
 export default function DiaryScreen() {
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}>Diary Screen</Text>
+            <DiaryUserStrip />
+            <DiaryUserStrip />
+            <DiaryUserStrip />
         </View>
     );
 }
@@ -30,8 +33,8 @@ DiaryScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
         backgroundColor: '#1c1c1c'
     },
     text: {
