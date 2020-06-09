@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const DiaryUserStrip = props => {
     return(
         <View style={styles.container}>
-            <View style={styles.item}></View>
+            <View style={{ ...styles.item, backgroundColor: 'yellow'}}></View>
             <View style={styles.item}></View>
             <View style={styles.item}></View>
             <View style={styles.item}></View>
@@ -17,13 +17,14 @@ const DiaryUserStrip = props => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '25%',
-        backgroundColor: 'yellow'
+        width: '27%',
+        justifyContent: 'space-between'
     },
     item: {
-        height: '10%',
+        height: '13%',
         width: '100%',
-        backgroundColor: 'green'
+        backgroundColor: 'green',
+        borderRadius: 15
     }
 });
 

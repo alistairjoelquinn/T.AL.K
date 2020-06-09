@@ -8,9 +8,11 @@ import DiaryUserStrip from '../components/DiaryUserStrip';
 export default function DiaryScreen() {
     return (
         <View style={styles.screen}>
-            <DiaryUserStrip />
-            <DiaryUserStrip />
-            <DiaryUserStrip />
+            <View style={styles.container}>
+                <DiaryUserStrip />
+                <DiaryUserStrip />
+                <DiaryUserStrip />
+            </View>
         </View>
     );
 }
@@ -33,9 +35,13 @@ DiaryScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
+        backgroundColor: '#1c1c1c',
+        justifyContent: 'center'
+    },
+    container: {
+        marginHorizontal: '5%',
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        backgroundColor: '#1c1c1c'
+        justifyContent: 'space-around'
     },
     text: {
         color: '#d2d2d2'
