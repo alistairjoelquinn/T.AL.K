@@ -1,14 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import moment from 'moment';
+import { View, Text, StyleSheet } from 'react-native';
 
 const SingleEntry = props => {
-    const today = new Date();
-    
 
     return (
         <View style={{ ...styles.item,  ...props.bgc }}>
-            <Text style={styles.text}>Monday</Text>
+            <Text style={styles.text}>{props.day}</Text>
         </View>
     );
 };
