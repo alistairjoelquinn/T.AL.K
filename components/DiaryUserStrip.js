@@ -1,23 +1,37 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 const SingleEntry = props => {
+    console.log('styles.item: ', styles.item);
+    console.log('props: ', props.bgc);
     return (
         <View style={{ ...styles.item,  ...props.bgc }}></View>
     );
 };
 
 const DiaryUserStrip = props => {
+    const colorList = [
+        {backgroundColor: '#f3f7cd'},
+        {backgroundColor: '#d8de9e'},
+        {backgroundColor: '#e0d770'},
+        {backgroundColor: '#e0b970'},
+        {backgroundColor: '#e09570'},
+        {backgroundColor: '#e06651'},
+        {backgroundColor: '#db3535'}
+    ]
+
     return(
         <View style={styles.container}>
             <Text style={styles.name}>{props.name}</Text>
-            <SingleEntry bgc={{backgroundColor: '#f3f7cd'}} />
-            <SingleEntry bgc={{backgroundColor: '#d8de9e'}} />
-            <SingleEntry bgc={{backgroundColor: '#e0d770'}} />
-            <SingleEntry bgc={{backgroundColor: '#e0b970'}} />
-            <SingleEntry bgc={{backgroundColor: '#e09570'}} />
-            <SingleEntry bgc={{backgroundColor: '#e06651'}} />
-            <SingleEntry bgc={{backgroundColor: '#db3535'}} />
+            <FlatList 
+                data={colorList}
+                keyExtractor={(item, index) => item.backgroundColor}
+                renderItem={itemData => <SingleEntry 
+                        bgc={itemData.item}
+                    />
+                }
+            />
+            <Text style={styles.name}>Hello</Text>
         </View>
     );
 };
