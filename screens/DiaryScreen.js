@@ -39,9 +39,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     container: {
+        marginTop: 5,
+        height: '100%',
         marginHorizontal: '5%',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+
     },
     text: {
         color: '#d2d2d2'

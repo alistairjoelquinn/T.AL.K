@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 const SingleEntry = props => {
-    console.log('styles.item: ', styles.item);
-    console.log('props: ', props.bgc);
     return (
-        <View style={{ ...styles.item,  ...props.bgc }}></View>
+        <View style={{ ...styles.item,  ...props.bgc }}>
+            <Text>Color: {props.bgc.backgroundColor}</Text>
+        </View>
     );
 };
 
@@ -24,6 +24,7 @@ const DiaryUserStrip = props => {
         <View style={styles.container}>
             <Text style={styles.name}>{props.name}</Text>
             <FlatList 
+                style={styles.list}
                 data={colorList}
                 keyExtractor={(item, index) => item.backgroundColor}
                 renderItem={itemData => <SingleEntry 
@@ -31,18 +32,19 @@ const DiaryUserStrip = props => {
                     />
                 }
             />
-            <Text style={styles.name}>Hello</Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        height: '100%',
         width: '27%',
         justifyContent: 'space-between'
     },
     item: {
-        height: '12.5%',
+        marginVertical: 10,
+        height: 65,
         width: '100%',
         backgroundColor: 'green',
         borderRadius: 15
