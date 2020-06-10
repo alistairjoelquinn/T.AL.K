@@ -8,11 +8,11 @@ const DiaryUserStrip = props => {
     const colorList = [
         {
             color: {backgroundColor: '#f3f7cd'},
-            day: moment(new Date()).format('dddd')
+            day: moment(new Date()).calendar().split(" at")[0]
         },
         {
             color: {backgroundColor: '#d8de9e'},
-            day: moment(new Date()).add(1, 'day').format('dddd')
+            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0]
         },
         {
             color: {backgroundColor: '#e0d770'},
@@ -55,7 +55,7 @@ const DiaryUserStrip = props => {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        width: '27%',
+        width: '30%',
         justifyContent: 'space-between'
     },
     name: {
