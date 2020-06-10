@@ -1,15 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
-const SingleEntry = props => {
-    return (
-        <View style={{ ...styles.item,  ...props.bgc }}>
-            <Text>Color: {props.bgc.backgroundColor}</Text>
-        </View>
-    );
-};
+import SingleEntry from './SingleEntry';
 
-const DiaryUserStrip = props => {
+const DiaryUserStrip = props => {    
     const colorList = [
         {backgroundColor: '#f3f7cd'},
         {backgroundColor: '#d8de9e'},
@@ -41,13 +35,6 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '27%',
         justifyContent: 'space-between'
-    },
-    item: {
-        marginVertical: 10,
-        height: 65,
-        width: '100%',
-        backgroundColor: 'green',
-        borderRadius: 15
     },
     name: {
         width: '100%',
