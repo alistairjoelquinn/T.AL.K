@@ -7,7 +7,7 @@ import calendarReducer from './store/reducers/calendar';
 import TalkNavigator from './navigation/TalkNavigator';
 
 const rootReducer = combineReducers({
-    calender: calendarReducer
+    calendar: calendarReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

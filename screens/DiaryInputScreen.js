@@ -1,18 +1,25 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const DiaryInputScren = props => {
     const day = props.navigation.getParam('currentDay');
-    console.log('day: ', day);
-
     const { navigation } = props;
+    const testData = useSelector(state => {
+        console.log('state: ', state);
+        console.log('state.calendar: ', state.calendar);
+        return state.calendar && state.calendar.calendarData
+    });
+
     useEffect(() => {
         navigation.setParams({today: day});
     }, [day]);
 
+
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}>Calender Input</Text>
+            <Text style={styles.text}>calendar Input</Text>
+            <Text style={styles.text}>{testData.day}</Text>
         </View>
     );
 }
