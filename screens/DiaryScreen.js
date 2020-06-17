@@ -5,13 +5,13 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import DiaryUserStrip from '../components/DiaryUserStrip';
 
-export default function DiaryScreen() {
+const DiaryScreen = props => {
     return (
         <View style={styles.screen}>
             <View style={styles.container}>
-                <DiaryUserStrip name="Teniya" />
-                <DiaryUserStrip name="Alistair" />
-                <DiaryUserStrip name="Koen" />
+                <DiaryUserStrip navigation={props.navigation} name="Teniya" />
+                <DiaryUserStrip navigation={props.navigation} name="Alistair" />
+                <DiaryUserStrip navigation={props.navigation} name="Koen" />
             </View>
         </View>
     );
@@ -50,3 +50,5 @@ const styles = StyleSheet.create({
         color: '#d2d2d2'
     }
 });
+
+export default DiaryScreen;

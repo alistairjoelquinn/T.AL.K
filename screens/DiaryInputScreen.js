@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function DiaryInputScren() {
+const DiaryInputScren = props => {
     return (
         <View style={styles.screen}>
             <Text style={styles.text}> Diary Input Screen</Text>
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
         color: '#d2d2d2'
     }
 });
+
+export default DiaryInputScren;

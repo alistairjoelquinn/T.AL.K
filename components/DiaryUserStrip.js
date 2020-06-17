@@ -43,6 +43,7 @@ const DiaryUserStrip = props => {
                 data={colorList}
                 keyExtractor={item => item.backgroundColor}
                 renderItem={itemData => <SingleEntry 
+                        navigation={props.navigation}
                         bgc={itemData.item.color}
                         day={itemData.item.day}
                     />
