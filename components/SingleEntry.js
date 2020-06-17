@@ -4,8 +4,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 const SingleEntry = props => {
     return (
         <TouchableOpacity onPress={() => {
-            console.log('props: ', props);
-            props.navigation.navigate('DiaryInput');
+            props.navigation.navigate('DiaryInput', {
+                currentDay: props.dayInput
+            });
         }}>
             <View style={{ ...styles.item,  ...props.bgc }}>
                 <Text style={styles.text}>{props.day}</Text>

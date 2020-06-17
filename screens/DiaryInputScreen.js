@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const DiaryInputScren = props => {
+    const day = props.navigation.getParam('currentDay');
+
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}> Diary Input Screen</Text>
+            <Text style={styles.text}>{day}</Text>
         </View>
     );
 }
