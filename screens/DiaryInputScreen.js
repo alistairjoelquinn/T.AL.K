@@ -12,7 +12,7 @@ const DiaryInputScren = props => {
 
     return (
         <View style={styles.screen}>
-            <Text style={styles.text}>Diary Input</Text>
+            <Text style={styles.text}>Calender Input</Text>
         </View>
     );
 }
