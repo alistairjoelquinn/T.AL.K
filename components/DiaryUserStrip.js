@@ -48,7 +48,7 @@ const DiaryUserStrip = props => {
             <Text style={styles.name}>{props.name}</Text>
             <FlatList 
                 data={colorList}
-                keyExtractor={item => item.backgroundColor}
+                keyExtractor={item => item.color.backgroundColor}
                 renderItem={itemData => <SingleEntry 
                         navigation={props.navigation}
                         bgc={itemData.item.color}

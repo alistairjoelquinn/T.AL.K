@@ -5,11 +5,7 @@ import { useSelector } from 'react-redux';
 const DiaryInputScren = props => {
     const day = props.navigation.getParam('currentDay');
     const { navigation } = props;
-    const testData = useSelector(state => {
-        console.log('state: ', state);
-        console.log('state.calendar: ', state.calendar);
-        return state.calendar && state.calendar.calendarData
-    });
+    const testData = useSelector(state => state.calendar && state.calendar.calendarData);
 
     useEffect(() => {
         navigation.setParams({today: day});
@@ -19,7 +15,7 @@ const DiaryInputScren = props => {
     return (
         <View style={styles.screen}>
             <Text style={styles.text}>calendar Input</Text>
-            <Text style={styles.text}>{testData.day}</Text>
+            <Text style={styles.test}>{testData.day}</Text>
         </View>
     );
 }
@@ -39,6 +35,11 @@ const styles = StyleSheet.create({
     text: {
         color: '#d2d2d2',
         fontSize: 22
+    },
+    test: {
+        color: 'tomato',
+        fontSize: 16,
+        marginVertical: 100
     }
 });
 
