@@ -18,10 +18,10 @@ const defaultStackOptions = {
         elevation: 0
     },
     headerTitleStyle: {
-        fontFamily: 'Arial'
+        fontFamily: 'medium'
     },
     headerBackTitleStyle: {
-        fontFamily: 'Arial'
+        fontFamily: 'medium'
     },
     headerTintColor: Colors.paleText
 };
@@ -57,7 +57,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'Arial'}}>Home</Text> : 'Home'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'medium'}}>Home</Text> : 'Home'
         }
     },
     ToDo: {
@@ -71,7 +71,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'Arial'}}>To-Do</Text> : 'To-Do'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'medium'}}>To-Do</Text> : 'To-Do'
         }
     },
     Shopping: {
@@ -85,7 +85,7 @@ const config = {
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'Arial'}}>Shopping</Text> : 'Shopping'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'medium'}}>Shopping</Text> : 'Shopping'
         }
     }
 };
