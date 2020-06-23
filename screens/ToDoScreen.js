@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, Alert } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
 import InputContainer from '../components/input-container';
 import Colors from '../constants/Colors';
+import { addToDoItem } from '../store/actions/todo';
 
 export default function ToDoScreen({ navigation }) {
+    dispatch = useDispatch();
+    const list = useSelector(state => state);
     const [notesList, setNotesList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
    
@@ -15,10 +19,7 @@ export default function ToDoScreen({ navigation }) {
         if(item.length === 0 || item === '') {
             return;
         }
-        setNotesList(notesList => [ 
-            { id: Math.random().toString(), value: item }, 
-            ...notesList 
-        ]);
+        dispatch(addToDoItem(item));
         setModalVisible(false);
     };
     const removeItem = itemId => {
