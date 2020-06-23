@@ -6,10 +6,12 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
 import calendarReducer from './store/reducers/calendar';
+import toDoReducer from './store/reducers/todo';
 import TalkNavigator from './navigation/TalkNavigator';
 
 const rootReducer = combineReducers({
-    calendar: calendarReducer
+    calendar: calendarReducer,
+    toDo: toDoReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
