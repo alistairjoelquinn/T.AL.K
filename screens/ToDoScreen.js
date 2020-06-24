@@ -12,7 +12,6 @@ import { addToDoItem, removeToDoItem } from '../store/actions/todo';
 export default function ToDoScreen({ navigation }) {
     dispatch = useDispatch();
     const list = useSelector(state => { 
-        console.log('state: ', state);
         return state.toDo.toDoList;
     });
     const [modalVisible, setModalVisible] = useState(false);
@@ -57,24 +56,20 @@ export default function ToDoScreen({ navigation }) {
             />
             <FlatList 
                 data={list} 
+                keyExtractor={item => item.key}
                 renderItem={({item, index}) =>    
-                        {console.log('item, index: ', item, index); 
-                     return <InputItem 
+                     <InputItem 
                         onDelete={() => {
                             removeItem(index);
                         }}
-                        content={item}
-                        color={index % 2 === 0 ? 
-                            {
-                                borderColor: Colors.paleYellow,
-                                // alignSelf: 'flex-start'
-                            } : 
-                            {
-                                borderColor: Colors.palePurple,
-                                // alignSelf: 'flex-end'
-                            }
+                        content={item.item}
+                        color={index % 2 === 0 
+                            ? 
+                                {borderColor: Colors.paleYellow} 
+                            : 
+                                {borderColor: Colors.palePurple}
                         }
-                    /> }
+                    /> 
                 }
             />
         </View>
