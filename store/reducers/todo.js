@@ -1,9 +1,8 @@
-import { ADD_TO_DO } from "../actions/todo";
+import { ADD_TO_DO, REMOVE_TO_DO } from "../actions/todo";
+import { $CombinedState } from "redux";
 
 const initialState = {
-    toDoList: [
-
-    ]
+    toDoList: []
 };
 
 export default (state = initialState, action) => {
@@ -12,9 +11,21 @@ export default (state = initialState, action) => {
             return { 
                 ...state, 
                 toDoList: [ 
-                    ...state.toDoList,
-                    action.item
+                    action.item,
+                    ...state.toDoList
                 ]
+            };
+        case REMOVE_TO_DO:
+            let shorter = state.toDoList;
+            console.log('shorter: ', shorter);
+            let newList = shorter.filter((current, index) => {
+                console.log('current, action: ', current, action);
+                return index !== action.item;
+            });
+            
+            return {
+                ...state,
+                toDoList: newList
             };
     }
     return state;

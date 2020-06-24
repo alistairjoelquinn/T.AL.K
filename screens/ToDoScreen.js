@@ -7,12 +7,14 @@ import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
 import InputContainer from '../components/input-container';
 import Colors from '../constants/Colors';
-import { addToDoItem } from '../store/actions/todo';
+import { addToDoItem, removeToDoItem } from '../store/actions/todo';
 
 export default function ToDoScreen({ navigation }) {
     dispatch = useDispatch();
-    const list = useSelector(state => state);
-    const [notesList, setNotesList] = useState([]);
+    const list = useSelector(state => { 
+        console.log('state: ', state);
+        return state.toDo.toDoList;
+    });
     const [modalVisible, setModalVisible] = useState(false);
    
     const newItem = item => {
@@ -27,15 +29,13 @@ export default function ToDoScreen({ navigation }) {
             "Remove Item",
             "Are you sure you want to remove this item?",
             [
-              {
-                text: "No",
-                style: "cancel"
-              },
-              { text: "Yes", onPress: () =>  setNotesList(notesList => {
-                return notesList.filter(item => {
-                    return item.id !== itemId;
-                });
-            })}
+                {
+                    text: "No",
+                    style: "cancel"
+                },
+                { text: "Yes", onPress: () =>  
+                    dispatch(removeToDoItem(itemId))
+                }
             ],
             { cancelable: true }
         );
@@ -56,13 +56,14 @@ export default function ToDoScreen({ navigation }) {
                 cancelItemInput={cancelItemInput}
             />
             <FlatList 
-                data={notesList} 
-                renderItem={({item, index}) =>      
-                     <InputItem 
+                data={list} 
+                renderItem={({item, index}) =>    
+                        {console.log('item, index: ', item, index); 
+                     return <InputItem 
                         onDelete={() => {
-                            removeItem(item.id);
+                            removeItem(index);
                         }}
-                        content={item.value}
+                        content={item}
                         color={index % 2 === 0 ? 
                             {
                                 borderColor: Colors.paleYellow,
@@ -73,7 +74,7 @@ export default function ToDoScreen({ navigation }) {
                                 // alignSelf: 'flex-end'
                             }
                         }
-                    /> 
+                    /> }
                 }
             />
         </View>
