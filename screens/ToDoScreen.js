@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, Alert } from 'react-native';
+import { StyleSheet, View, FlatList, Alert, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -46,6 +46,14 @@ export default function ToDoScreen({ navigation }) {
     useEffect(() => {
         navigation.setParams({toggle: setModalVisible});
     }, []);
+
+    if(list.length === 0 && !modalVisible) {
+        return (
+            <View style={styles.centered}>
+                <Text style={{color: Colors.paleText}}>List current empty!</Text>
+            </View>
+        );
+    }
 
     return (
         <View style={styles.screen}>
@@ -97,5 +105,11 @@ const styles = StyleSheet.create({
         padding: 50,
         backgroundColor: '#1c1c1c',
         height: '100%'
+    },
+    centered: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#1c1c1c',
     }
 });
