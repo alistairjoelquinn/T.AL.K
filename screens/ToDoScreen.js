@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -67,6 +67,19 @@ export default function ToDoScreen({ navigation }) {
         navigation.setParams({toggle: setModalVisible});
     }, []);
 
+    if(error) {
+        return (
+            <View style={styles.centered}>
+                <Text style={{color: Colors.paleText}}>An error has occurred!</Text>
+                <Button 
+                    title="Try Again!" 
+                    onPress={loadProducts}
+                    color={Colors.paleText}
+                />
+            </View>
+        );
+    }
+
     if(list.length === 0 && !modalVisible && isLoading) {
         return (
             <View style={styles.centered}>
@@ -82,30 +95,6 @@ export default function ToDoScreen({ navigation }) {
         return (
             <View style={styles.centered}>
                 <Text style={{color: Colors.paleText}}>List current empty!</Text>
-            </View>
-        );
-    }
-
-    if(error) {
-        return (
-            <View style={styles.centered}>
-                <Text>An error has occurred!</Text>
-                <Button 
-                    title="Try Again!" 
-                    onPress={loadProducts}
-                    color={Colors.primary}
-                />
-            </View>
-        );
-    }
-
-    if(isLoading) {
-        return (
-            <View style={styles.centered}>
-                <ActivityIndicator  
-                    size='large' 
-                    color={Colors.primary}
-                />
             </View>
         );
     }
