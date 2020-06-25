@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button } from 'react-native';
+import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button, RefreshControl } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -12,6 +12,7 @@ import { addToDoItem, removeToDoItem, fetchListItems } from '../store/actions/to
 export default function ToDoScreen({ navigation }) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
+    const [isRefreshing, setIsRefreshing] = useState(false);
     dispatch = useDispatch();
     const list = useSelector(state => { 
         console.log('state: ', state);
@@ -19,14 +20,15 @@ export default function ToDoScreen({ navigation }) {
     });
     const [modalVisible, setModalVisible] = useState(false);
 
-
     const loadProducts = useCallback(async () => {
         setError(null);
+        setIsRefreshing(true);
         try {
             await dispatch(fetchListItems());
         } catch(err) {
             setError(err.message);
         } 
+        setIsRefreshing(false);
     }, [dispatch, setIsLoading, setError]);
 
     useEffect(() => {
@@ -108,6 +110,13 @@ export default function ToDoScreen({ navigation }) {
             />
             <FlatList 
                 data={list} 
+                refreshControl={
+                    <RefreshControl
+                        onRefresh={loadProducts}
+                        refreshing={isRefreshing}
+                        tintColor="white"
+                     />
+                  }
                 keyExtractor={item => item.key}
                 renderItem={({item, index}) =>    
                      <InputItem 
