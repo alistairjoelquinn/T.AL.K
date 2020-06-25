@@ -23,8 +23,8 @@ export default (state = initialState, action) => {
             };
         case REMOVE_TO_DO:
             let shorter = state.toDoList;
-            let newList = shorter.filter((current, index) => {
-                return index !== action.item;
+            let newList = shorter.filter(listItem => {
+                return listItem.key !== action.item;
             });
             return {
                 ...state,

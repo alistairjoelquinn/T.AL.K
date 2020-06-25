@@ -67,10 +67,21 @@ export default function ToDoScreen({ navigation }) {
         navigation.setParams({toggle: setModalVisible});
     }, []);
 
+    if(list.length === 0 && !modalVisible && isLoading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator  
+                    size='large' 
+                    color={Colors.paleText}
+                />
+            </View>
+        );
+    }
+
     if(list.length === 0 && !modalVisible) {
         return (
             <View style={styles.centered}>
-                <Text>List current empty!</Text>
+                <Text style={{color: Colors.paleText}}>List current empty!</Text>
             </View>
         );
     }
@@ -99,14 +110,6 @@ export default function ToDoScreen({ navigation }) {
         );
     }
 
-    // if(!isLoading && list.length === 0) {
-    //     return (
-    //         <View style={styles.centered}>
-    //             <Text>List current empty!</Text>
-    //         </View>
-    //     );
-    // }
-
     return (
         <View style={styles.screen}>
             <InputContainer 
@@ -120,7 +123,7 @@ export default function ToDoScreen({ navigation }) {
                 renderItem={({item, index}) =>    
                      <InputItem 
                         onDelete={() => {
-                            removeItem(index);
+                            removeItem(item.key);
                         }}
                         content={item.item}
                         color={index % 2 === 0 
