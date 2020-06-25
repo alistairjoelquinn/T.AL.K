@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
                 toDoList: [ 
                     {
                         item: action.item,
-                        key: new Date().toISOString()
+                        key: action.key
                     },
                     ...state.toDoList
                 ]

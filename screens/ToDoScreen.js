@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList, Alert, Text } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -7,14 +7,34 @@ import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
 import InputContainer from '../components/input-container';
 import Colors from '../constants/Colors';
-import { addToDoItem, removeToDoItem } from '../store/actions/todo';
+import { addToDoItem, removeToDoItem, fetchListItems } from '../store/actions/todo';
 
 export default function ToDoScreen({ navigation }) {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
     dispatch = useDispatch();
     const list = useSelector(state => { 
+        console.log('state: ', state);
         return state.toDo.toDoList;
     });
     const [modalVisible, setModalVisible] = useState(false);
+
+
+    const loadProducts = useCallback(async () => {
+        setError(null);
+        try {
+            await dispatch(fetchListItems());
+        } catch(err) {
+            setError(err.message);
+        } 
+    }, [dispatch, setIsLoading, setError]);
+
+    useEffect(() => {
+        setIsLoading(true);
+        loadProducts().then(() => {
+            setIsLoading(false);
+        });
+    }, [dispatch, loadProducts])
    
     const newItem = item => {
         if(item.length === 0 || item === '') {
@@ -50,10 +70,42 @@ export default function ToDoScreen({ navigation }) {
     if(list.length === 0 && !modalVisible) {
         return (
             <View style={styles.centered}>
-                <Text style={{color: Colors.paleText}}>List current empty!</Text>
+                <Text>List current empty!</Text>
             </View>
         );
     }
+
+    if(error) {
+        return (
+            <View style={styles.centered}>
+                <Text>An error has occurred!</Text>
+                <Button 
+                    title="Try Again!" 
+                    onPress={loadProducts}
+                    color={Colors.primary}
+                />
+            </View>
+        );
+    }
+
+    if(isLoading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator  
+                    size='large' 
+                    color={Colors.primary}
+                />
+            </View>
+        );
+    }
+
+    // if(!isLoading && list.length === 0) {
+    //     return (
+    //         <View style={styles.centered}>
+    //             <Text>List current empty!</Text>
+    //         </View>
+    //     );
+    // }
 
     return (
         <View style={styles.screen}>
