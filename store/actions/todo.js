@@ -1,9 +1,31 @@
+import { dbLink } from '../../secrets.json';
+
 export const ADD_TO_DO = 'ADD_TO_DO';
 export const REMOVE_TO_DO = 'REMOVE_TO_DO';
+export const SET_LIST = 'SET_LIST';
+
+export const fetchListItems = () => {
+    return async dispatch => {
+        try {
+            const response = await fetch(dbLink);
+            
+            if(!response.ok) throw new Error('Something went wrong!!');
+            const resData = await response.json();
+
+            dispatch({
+                type: SET_LIST,
+                list: resData
+            });
+        } catch(err) {
+            console.log('err fetching list items from db: ', err);
+            throw err
+        }
+    };
+};
 
 export const addToDoItem = item => {
     return async dispatch => {
-        const response = await fetch('https://talk-app-e6de0.firebaseio.com/todo.json', {
+        const response = await fetch(dbLink, {
             method: 'POST',
             header: {
                 'Content-Type': 'application.json'
@@ -12,8 +34,6 @@ export const addToDoItem = item => {
                 item
             })
         });
-    const resData = await response.json();
-    console.log('resData: ', resData);
         dispatch({
             type: ADD_TO_DO,
             item

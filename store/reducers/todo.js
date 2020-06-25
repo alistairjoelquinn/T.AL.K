@@ -1,4 +1,4 @@
-import { ADD_TO_DO, REMOVE_TO_DO } from "../actions/todo";
+import { ADD_TO_DO, REMOVE_TO_DO, SET_LIST } from "../actions/todo";
 
 const initialState = {
     toDoList: []
@@ -6,6 +6,10 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SET_LIST:
+            return {
+                toDoList: action.list
+            };
         case ADD_TO_DO:
             return { 
                 ...state, 
