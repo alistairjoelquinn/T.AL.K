@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Input from '../components/Input';
 import LoginContainer from '../components/LoginContainer';
 import Colors from '../constants/Colors';
+import { login } from '../store/actions/auth';
 
 const formReducer = (state, action) => {
     if (action.type === 'FORM_UPDATE') {
@@ -118,9 +119,7 @@ const LoginScreen = props => {
                             {isLoading ? <ActivityIndicator size='small' color={Colors.palePurple} /> : <Button
                                 title="Log In"
                                 color={Colors.palePurple}
-                                onPress={() => {
-                                    props.navigation.navigate('Main');
-                                }}
+                                onPress={authHandler}
                             />}
                         </View>
                     </ScrollView>

@@ -2,12 +2,15 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useSelector } from 'react-redux';
 
 import HeaderButton from '../components/HeaderButton';
 import DiaryUserStrip from '../components/DiaryUserStrip';
 import Colors from '../constants/Colors';
 
 const DiaryScreen = props => {
+    const state = useSelector(state => state);
+    console.log('state: ', state);
     return (
         <LinearGradient
             colors={[Colors.grey, 'dimgrey']}

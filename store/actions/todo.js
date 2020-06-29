@@ -5,9 +5,10 @@ export const REMOVE_TO_DO = 'REMOVE_TO_DO';
 export const SET_LIST = 'SET_LIST';
 
 export const fetchListItems = () => {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const token = getState().auth.token;
         try {
-            const response = await fetch(dbLinkToDo);
+            const response = await fetch(`${dbLinkToDo}?auth=${token}`);
             if(!response.ok) throw new Error('Something went wrong!!');
             const resData = await response.json();
             const dataList = [  ]
@@ -30,9 +31,10 @@ export const fetchListItems = () => {
 };
 
 export const addToDoItem = item => {
-    return async dispatch => {
+    return async (dispatch, getState) => {
+        const token = getState().auth.token;
         try {
-            const response = await fetch(dbLinkToDo, {
+            const response = await fetch(`${dbLinkToDo}?auth=${token}`, {
                 method: 'POST',
                 header: {
                     'Content-Type': 'application.json'
@@ -55,8 +57,9 @@ export const addToDoItem = item => {
 };
 
 export const removeToDoItem = item => {
-    return async dispatch => {
-        const response = await fetch(`${dbLinkToDoRemove}${item}.json`, {
+    return async (dispatch, getState) => {
+        const token = getState().auth.token;
+        const response = await fetch(`${dbLinkToDoRemove}${item}.json?auth=${token}`, {
             method: 'DELETE'
         });
         if(!response.ok) throw new Error('Something went wrong');
