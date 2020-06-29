@@ -1,10 +1,10 @@
-import React from 'react';
-import { StyleSheet, ScrollView, View, KeyboardAvoidingView, Button, ActivityIndicator, Alert } from 'react-native';
+import React, { useState, useReducer, useCallback, useEffect } from 'react';
+import { StyleSheet, Text, ScrollView, View, KeyboardAvoidingView, Button, ActivityIndicator, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import Input from '../../components/Input';
-import Card from '../../components/Card';
+import Input from '../components/Input';
+import LoginContainer from '../components/LoginContainer';
 import Colors from '../constants/Colors';
 
 const formReducer = (state, action) => {
@@ -86,10 +86,10 @@ const LoginScreen = props => {
     return (
         <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={50} style={styles.screen}>
             <LinearGradient
-                colors={['black', 'dimgrey']}
+                colors={[Colors.grey, 'dimgrey']}
                 style={styles.gradient}
             >
-                <Card style={styles.authContainer}>
+                <LoginContainer style={styles.authContainer}>
                     <ScrollView>
                         <Input
                             id='email'
@@ -117,19 +117,19 @@ const LoginScreen = props => {
                         <View style={styles.buttonContainer}>
                             {isLoading ? <ActivityIndicator size='small' color={Colors.palePurple} /> : <Button
                                 title="Log In"
-                                color={Colors.paleGreen}
+                                color={Colors.palePurple}
                                 onPress={authHandler}
                             />}
                         </View>
                     </ScrollView>
-                </Card>
+                </LoginContainer>
             </LinearGradient>
         </KeyboardAvoidingView>
     );
 };
 
 LoginScreen.navigationOptions = {
-    headerTitle: 'Please Log In'
+    headerTitle: 'Login to T.AL.K'
 };
 
 const styles = StyleSheet.create({

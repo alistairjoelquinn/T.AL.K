@@ -1,11 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Platform, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import DiaryScreen from '../screens/DiaryScreen';
+import LoginScreen from '../screens/LoginScreen';
 import DiaryInputScreen from '../screens/DiaryInputScreen';
 import ToDoScreen from '../screens/ToDoScreen';
 import ShoppingScreen from '../screens/ShoppingScreen'
@@ -45,52 +46,58 @@ const ShoppingNavigator = createStackNavigator({
     defaultNavigationOptions: defaultStackOptions
 });
 
+const LoginNavigator = createStackNavigator({
+    Login: LoginScreen
+}, {
+    defaultNavigationOptions: defaultStackOptions
+});
+
 const config = {
     Diary: {
         screen: DiaryNavigator,
         navigationOptions: {
             tabBarIcon: tabInfo => {
-                return <Ionicons 
-                    name='ios-calendar' 
-                    size={25} 
+                return <Ionicons
+                    name='ios-calendar'
+                    size={25}
                     color={tabInfo.tintColor}
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'medium'}}>Home</Text> : 'Home'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Home</Text> : 'Home'
         }
     },
     ToDo: {
         screen: ToDoNavigator,
         navigationOptions: {
             tabBarIcon: tabInfo => {
-                return <Ionicons 
-                    name='ios-list' 
-                    size={25} 
+                return <Ionicons
+                    name='ios-list'
+                    size={25}
                     color={tabInfo.tintColor}
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'medium'}}>To-Do</Text> : 'To-Do'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>To-Do</Text> : 'To-Do'
         }
     },
     Shopping: {
         screen: ShoppingNavigator,
         navigationOptions: {
             tabBarIcon: tabInfo => {
-                return <Ionicons 
-                    name='ios-basket' 
-                    size={25} 
+                return <Ionicons
+                    name='ios-basket'
+                    size={25}
                     color={tabInfo.tintColor}
                 />;
             },
             tabBarColor: Colors.grey,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'medium'}}>Shopping</Text> : 'Shopping'
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Shopping</Text> : 'Shopping'
         }
     }
 };
 
-const MainTabNavigator = createMaterialBottomTabNavigator(config, 
+const TabNavigator = createMaterialBottomTabNavigator(config,
     {
         activeColor: Colors.paleText,
         shifting: true,
@@ -100,4 +107,9 @@ const MainTabNavigator = createMaterialBottomTabNavigator(config,
     }
 );
 
-export default createAppContainer(MainTabNavigator);
+const MainNavigator = createSwitchNavigator({
+    Login: LoginNavigator,
+    Main: TabNavigator
+});
+
+export default createAppContainer(MainNavigator);
