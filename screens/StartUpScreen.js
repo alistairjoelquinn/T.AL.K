@@ -12,7 +12,8 @@ const StartUpScreen = props => {
         const tryLogin = async () => {
             const userData = await AsyncStorage.getItem('userData');
             if (!userData) {
-                props.navigation.navigate('Auth');
+                console.log('no USER DATA');
+                props.navigation.navigate('Login');
                 return;
             }
             const transformedData = JSON.parse(userData);
@@ -31,7 +32,7 @@ const StartUpScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <ActivityIndicator size='large' color={Colors.primary} />
+            <ActivityIndicator size='large' color={Colors.grey} />
         </View>
     );
 };

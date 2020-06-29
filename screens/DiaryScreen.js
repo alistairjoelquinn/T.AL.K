@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import HeaderButton from '../components/HeaderButton';
 import DiaryUserStrip from '../components/DiaryUserStrip';
 import Colors from '../constants/Colors';
+import { logout } from '../store/actions/auth';
 
 const DiaryScreen = props => {
     const state = useSelector(state => state);
     console.log('state: ', state);
+    const dispatch = useDispatch();
+
+    const { navigation } = props;
+    useEffect(() => {
+        const logger = () => {
+            dispatch(logout());
+            navigation.navigate('StartUp');
+        };
+        navigation.setParams({quit: logger});
+    }, [dispatch]);
+
     return (
         <LinearGradient
             colors={[Colors.grey, 'dimgrey']}
@@ -28,8 +41,17 @@ const DiaryScreen = props => {
 }
 
 DiaryScreen.navigationOptions = navData => {
+    const logout = navData.navigation.getParam('quit');
+    console.log('logout: ', logout);
     return {
         headerTitle: 'Home',
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item
+                title='Menu'
+                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                onPress={logout}
+            />
+        </HeaderButtons>,
         headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item 
                 title='Input' 
