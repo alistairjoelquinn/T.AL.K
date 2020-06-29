@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button, RefreshControl } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
@@ -102,38 +103,43 @@ export default function ToDoScreen({ navigation }) {
     }
 
     return (
-        <View style={styles.screen}>
-            <InputContainer 
-                newItem={newItem}
-                visible={modalVisible}
-                cancelItemInput={cancelItemInput}
-            />
-            <FlatList 
-                data={list} 
-                refreshControl={
-                    <RefreshControl
-                        onRefresh={loadProducts}
-                        refreshing={isRefreshing}
-                        tintColor="white"
-                     />
-                  }
-                keyExtractor={item => item.key}
-                renderItem={({item, index}) =>    
-                     <InputItem 
-                        onDelete={() => {
-                            removeItem(item.key);
-                        }}
-                        content={item.item}
-                        color={index % 2 === 0 
-                            ? 
-                                {borderColor: Colors.paleYellow} 
-                            : 
-                                {borderColor: Colors.palePurple}
-                        }
-                    /> 
-                }
-            />
-        </View>
+        <LinearGradient
+            colors={['dimgrey', Colors.grey]}
+            style={styles.gradient}
+        >   
+            <View style={styles.screen}>
+                <InputContainer 
+                    newItem={newItem}
+                    visible={modalVisible}
+                    cancelItemInput={cancelItemInput}
+                />
+                <FlatList 
+                    data={list} 
+                    refreshControl={
+                        <RefreshControl
+                            onRefresh={loadProducts}
+                            refreshing={isRefreshing}
+                            tintColor="white"
+                        />
+                    }
+                    keyExtractor={item => item.key}
+                    renderItem={({item, index}) =>    
+                        <InputItem 
+                            onDelete={() => {
+                                removeItem(item.key);
+                            }}
+                            content={item.item}
+                            color={index % 2 === 0 
+                                ? 
+                                    {borderColor: Colors.paleYellow} 
+                                : 
+                                    {borderColor: Colors.palePurple}
+                            }
+                        /> 
+                    }
+                />
+            </View>
+        </LinearGradient>
     );
 };
 
@@ -156,8 +162,13 @@ ToDoScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         padding: 50,
-        backgroundColor: '#1c1c1c',
+        backgroundColor: 'transparent',
         height: '100%'
+    },
+    gradient: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     centered: {
         flex: 1,

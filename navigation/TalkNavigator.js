@@ -37,7 +37,13 @@ const DiaryNavigator = createStackNavigator({
 const ToDoNavigator = createStackNavigator({
     ToDo: ToDoScreen
 }, {
-    defaultNavigationOptions: defaultStackOptions
+    defaultNavigationOptions: {
+        ...defaultStackOptions,
+        headerStyle: {
+            ...defaultStackOptions.headerStyle,
+            backgroundColor: 'dimgrey'
+        }
+    }
 });
 
 const ShoppingNavigator = createStackNavigator({
