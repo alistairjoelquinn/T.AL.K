@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useCallback, useEffect } from 'react';
-import { StyleSheet, Text, ScrollView, View, KeyboardAvoidingView, Button, ActivityIndicator, Alert } from 'react-native';
+import { StyleSheet, ScrollView, View, KeyboardAvoidingView, Button, ActivityIndicator, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -118,7 +118,9 @@ const LoginScreen = props => {
                             {isLoading ? <ActivityIndicator size='small' color={Colors.palePurple} /> : <Button
                                 title="Log In"
                                 color={Colors.palePurple}
-                                onPress={authHandler}
+                                onPress={() => {
+                                    props.navigation.navigate('Main');
+                                }}
                             />}
                         </View>
                     </ScrollView>

@@ -1,19 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../components/HeaderButton';
 import DiaryUserStrip from '../components/DiaryUserStrip';
+import Colors from '../constants/Colors';
 
 const DiaryScreen = props => {
     return (
-        <View style={styles.screen}>
-            <View style={styles.container}>
-                <DiaryUserStrip navigation={props.navigation} name="Teniya" />
-                <DiaryUserStrip navigation={props.navigation} name="Alistair" />
-                <DiaryUserStrip navigation={props.navigation} name="Koen" />
+        <LinearGradient
+            colors={[Colors.grey, 'dimgrey']}
+            style={styles.gradient}
+        >     
+            <View style={styles.screen}>
+                <View style={styles.container}>
+                    <DiaryUserStrip navigation={props.navigation} name="Teniya" />
+                    <DiaryUserStrip navigation={props.navigation} name="Alistair" />
+                    <DiaryUserStrip navigation={props.navigation} name="Koen" />
+                </View>
             </View>
-        </View>
+        </LinearGradient>
     );
 }
 
@@ -35,7 +42,7 @@ DiaryScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: '#1c1c1c',
+        backgroundColor: 'transparent',
         justifyContent: 'center'
     },
     container: {
@@ -45,6 +52,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
 
+    },
+    gradient: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     text: {
         color: '#d2d2d2'

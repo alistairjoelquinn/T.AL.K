@@ -63,7 +63,7 @@ const config = {
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.grey,
+            tabBarColor: 'dimgrey',
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Home</Text> : 'Home'
         }
     },
