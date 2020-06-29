@@ -7,6 +7,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 import DiaryScreen from '../screens/DiaryScreen';
 import LoginScreen from '../screens/LoginScreen';
+import StartUpScreen from '../screens/StartUpScreen';
 import DiaryInputScreen from '../screens/DiaryInputScreen';
 import ToDoScreen from '../screens/ToDoScreen';
 import ShoppingScreen from '../screens/ShoppingScreen'
@@ -114,6 +115,7 @@ const TabNavigator = createMaterialBottomTabNavigator(config,
 );
 
 const MainNavigator = createSwitchNavigator({
+    StartUp: StartUpScreen,
     Login: LoginNavigator,
     Main: TabNavigator
 });
