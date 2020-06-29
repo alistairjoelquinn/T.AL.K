@@ -16,7 +16,7 @@ export const fetchListItems = () => {
                     item: resData[key].item,
                     key: key
                 };
-                dataList.push(newItem);
+                dataList.unshift(newItem);
             }
             dispatch({
                 type: SET_LIST,
