@@ -7,7 +7,6 @@ export const LOGOUT = "LOGOUT";
 
 export const authenticate = (userId, token) => {
     return dispatch => {
-        console.log('log in taking place');
         dispatch({
             type: AUTHENTICATE,
             userId: userId,

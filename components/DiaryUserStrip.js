@@ -3,41 +3,42 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import moment from 'moment';
 
 import SingleEntry from './SingleEntry';
+import Colors from '../constants/Colors';
 
 const DiaryUserStrip = props => {    
     const colorList = [
         {
-            color: {backgroundColor: '#f3f7cd'},
+            colorDayCalc: moment(new Date()).format('dddd'),
             day: moment(new Date()).calendar().split(" at")[0],
             dayInput: moment(new Date()).format('MMMM Do YYYY')
         },
         {
-            color: {backgroundColor: '#d8de9e'},
+            colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
             day: moment(new Date()).add(1, 'day').calendar().split(" at")[0],
             dayInput: moment(new Date()).add(1, 'day').format('MMMM Do YYYY')
         },
         {
-            color: {backgroundColor: '#e0d770'},
+            colorDayCalc: moment(new Date()).add(2, 'day').format('dddd'),
             day: moment(new Date()).add(2, 'day').format('dddd'),
             dayInput: moment(new Date()).add(2, 'day').format('MMMM Do YYYY')
         },
         {
-            color: {backgroundColor: '#e0b970'},
+            colorDayCalc: moment(new Date()).add(3, 'day').format('dddd'),
             day: moment(new Date()).add(3, 'day').format('dddd'),
             dayInput: moment(new Date()).add(3, 'day').format('MMMM Do YYYY')
         },
         {
-            color: {backgroundColor: '#e09570'},
+            colorDayCalc: moment(new Date()).add(4, 'day').format('dddd'),
             day: moment(new Date()).add(4, 'day').format('dddd'),
             dayInput: moment(new Date()).add(4, 'day').format('MMMM Do YYYY')
         },
         {
-            color: {backgroundColor: '#e06651'},
+            colorDayCalc: moment(new Date()).add(5, 'day').format('dddd'),
             day: moment(new Date()).add(5, 'day').format('dddd'),
             dayInput: moment(new Date()).add(5, 'day').format('MMMM Do YYYY')
         },
         {
-            color: {backgroundColor: '#db3535'},
+            colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
             day: moment(new Date()).add(6, 'day').format('dddd'),
             dayInput: moment(new Date()).add(6, 'day').format('MMMM Do YYYY')
         }  
@@ -48,10 +49,12 @@ const DiaryUserStrip = props => {
             <Text style={styles.name}>{props.name}</Text>
             <FlatList 
                 data={colorList}
-                keyExtractor={item => item.color.backgroundColor}
+                keyExtractor={item => {
+                    return item.colorDayCalc
+                }}
                 renderItem={itemData => <SingleEntry 
                         navigation={props.navigation}
-                        bgc={itemData.item.color}
+                        colorDayCalc={itemData.item.colorDayCalc}
                         day={itemData.item.day}
                         dayInput={itemData.item.dayInput}
                     />

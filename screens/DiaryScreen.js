@@ -11,8 +11,6 @@ import Colors from '../constants/Colors';
 import { logout } from '../store/actions/auth';
 
 const DiaryScreen = props => {
-    const state = useSelector(state => state);
-    console.log('state: ', state);
     const dispatch = useDispatch();
 
     const { navigation } = props;
