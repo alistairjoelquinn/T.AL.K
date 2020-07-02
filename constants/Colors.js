@@ -4,5 +4,8 @@ export default {
     beige: '#faebd7',
     paleYellow: '#ffff85',
     paleGreen: '#65fca7',
-    palePurple: '#c192ff'
+    palePurple: '#c192ff',
+    darkPurple: '#9E72EA',
+    mildBlue: '#7AD3FF',
+    darkBlue: '#071C72'
 };

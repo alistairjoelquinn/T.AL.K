@@ -11,13 +11,19 @@ const SingleEntry = props => {
         }}>
             <View style={{ 
                 ...styles.item,  
-                backgroundColor: (props.colorDayCalc === 'Saturday' || props.colorDayCalc === 'Sunday')
+                backgroundColor: Colors.paleText,
+                borderWidth: 3,
+                borderColor: (props.colorDayCalc === 'Saturday' || props.colorDayCalc === 'Sunday')
                     ? 
-                        Colors.palePurple 
+                        Colors.darkBlue 
                     : 
                         Colors.paleYellow 
             }}>
-                <Text style={styles.text}>{props.day}</Text>
+                <Text style={styles.text}>{
+                    (props.day === 'Today' || props.day === 'Tomorrow') ?
+                    props.day :
+                    props.day.slice(0, 3)
+                }</Text>
             </View>
         </TouchableOpacity>
     );
@@ -29,11 +35,14 @@ const styles = StyleSheet.create({
         marginVertical: 7,
         height: 70,
         width: '100%',
-        backgroundColor: 'green',
-        borderRadius: 15
+        borderRadius: 15,
+        alignItems: 'flex-start'
     },
     text: {
-        textAlign: 'center'
+        marginTop: 3,
+        marginLeft: 5,
+        textAlign: 'center',
+        color: Colors.grey
     }
 });
 

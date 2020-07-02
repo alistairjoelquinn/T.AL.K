@@ -40,7 +40,6 @@ const DiaryScreen = props => {
 
 DiaryScreen.navigationOptions = navData => {
     const logout = navData.navigation.getParam('quit');
-    console.log('logout: ', logout);
     return {
         headerTitle: 'Home',
         headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
