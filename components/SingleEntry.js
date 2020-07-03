@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         marginTop: 3,
         marginLeft: 5,
         textAlign: 'center',
-        color: Colors.grey
+        color: Colors.grey,
+        fontSize: 10
     }
 });
 

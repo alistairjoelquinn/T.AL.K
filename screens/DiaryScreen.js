@@ -29,7 +29,7 @@ const DiaryScreen = props => {
         >     
             <View style={styles.screen}>
                 <View style={styles.container}>
-                    <DiaryUserStrip navigation={props.navigation} name="Teniya" />
+                    <DiaryUserStrip navigation={props.navigation} first name="Teniya" />
                     <DiaryUserStrip navigation={props.navigation} name="Alistair" />
                     <DiaryUserStrip navigation={props.navigation} name="Koen" />
                 </View>

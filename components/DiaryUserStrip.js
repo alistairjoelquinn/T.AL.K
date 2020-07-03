@@ -55,7 +55,7 @@ const DiaryUserStrip = props => {
                 renderItem={itemData => <SingleEntry 
                         navigation={props.navigation}
                         colorDayCalc={itemData.item.colorDayCalc}
-                        day={itemData.item.day}
+                        day={props.first ? itemData.item.day : ''}
                         dayInput={itemData.item.dayInput}
                     />
                 }
