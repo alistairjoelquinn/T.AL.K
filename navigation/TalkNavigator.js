@@ -50,7 +50,16 @@ const ToDoNavigator = createStackNavigator({
 const ShoppingNavigator = createStackNavigator({
     Shopping: ShoppingScreen
 }, {
-    defaultNavigationOptions: defaultStackOptions
+    defaultNavigationOptions: {
+        ...defaultStackOptions,
+        headerStyle: {
+            ...defaultStackOptions.headerStyle,
+            backgroundColor: 'white'
+        },
+        headerTitleStyle: {
+            color: 'black'
+        }
+    }
 });
 
 const LoginNavigator = createStackNavigator({
@@ -72,7 +81,11 @@ const config = {
             },
             activeColor: Colors.paleText,
             barStyle: {
-                backgroundColor: 'dimgrey'
+                backgroundColor: 'dimgrey',
+                borderColor: "transparent",
+                borderWidth: 0,
+                shadowOpacity: 0,
+                elevation: 0
             },
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Home</Text> : 'Home'
         }
@@ -89,7 +102,8 @@ const config = {
             },
             activeColor: Colors.paleText,
             barStyle: {
-                backgroundColor: Colors.grey
+                backgroundColor: Colors.grey,
+                borderTopColor: "transparent"
             },
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>To-Do</Text> : 'To-Do'
         }
@@ -106,7 +120,11 @@ const config = {
             },
             barStyle: {
                 backgroundColor: 'white',
-                color: Colors.grey
+                color: Colors.grey,
+                borderColor: "transparent",
+                borderWidth: 0,
+                shadowOpacity: 0,
+                elevation: 0
             },
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Shopping</Text> : 'Shopping'
         }
@@ -116,7 +134,6 @@ const config = {
 const TabNavigator = createMaterialBottomTabNavigator(config,
     {
         shifting: true,
-        
     }
 );
 
