@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 
 import Colors from '../constants/Colors';
 
@@ -14,26 +15,35 @@ const DiaryInputScren = props => {
 
     return (
         <View style={styles.screen}>
-            <TextInput 
-                placeholder="name" 
-                placeholderTextColor='#1c1c1c'
-                style={styles.inputText}
-            />
-            <TextInput 
-                placeholder="event" 
-                placeholderTextColor='#1c1c1c'
-                style={styles.inputText}
-            />
-            {!day && <TextInput 
-                placeholder="date" 
-                placeholderTextColor='#1c1c1c'
-                style={styles.inputText}
-            />}
-            <TextInput 
-                placeholder="time" 
-                placeholderTextColor='#1c1c1c'
-                style={styles.inputText}
-            />
+            <View style={styles.nudgeUp}>
+                <View style={styles.dropdown}>
+                    <RNPickerSelect
+                        placeholder={{label: 'Choose a person...'}}
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Teniya', value: 'teniya', key: 1 },
+                            { label: 'Alistair', value: 'alistair', key: 2 },
+                            { label: 'Koen', value: 'koen', key: 3 },
+                        ]}
+                    />
+                </View>
+                <TextInput 
+                    placeholder="What's happening?" 
+                    placeholderTextColor='#1c1c1c'
+                    style={styles.inputText}
+                />
+                {!day && <TextInput 
+                    placeholder="date" 
+                    placeholderTextColor='#1c1c1c'
+                    style={styles.inputText}
+                />}
+                <TextInput 
+                    placeholder="time" 
+                    placeholderTextColor='#1c1c1c'
+                    style={styles.inputText}
+                    keyboardType="numbers-and-punctuation"
+                />
+            </View>
         </View>
     );
 }
@@ -79,6 +89,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#d2d2d2',
         color: '#1c1c1c',
         fontSize: 16
+    },
+    dropdown: {
+        margin: 20
+    },
+    nudgeUp: {
+        position: 'relative',
+        bottom: 40
     }
 });
 
