@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button, RefreshControl, Platform } from 'react-native';
+import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button, RefreshControl } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';

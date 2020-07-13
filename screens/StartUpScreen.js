@@ -10,7 +10,13 @@ const StartUpScreen = props => {
 
     useEffect(() => {
         const tryLogin = async () => {
-            const userData = await AsyncStorage.getItem('userData');
+            console.log('trying to log');
+            let userData;
+            try {
+                userData = await AsyncStorage.getItem('userData');
+            } catch (err) {
+                console.log('error getting user data: ', err);
+            }
             if (!userData) {
                 console.log('no USER DATA');
                 props.navigation.navigate('Login');
@@ -20,7 +26,7 @@ const StartUpScreen = props => {
             const { token, userId, expiryDate } = transformedData;
             const expirationDate = new Date(expiryDate);
             if (expirationDate <= new Date() || !token || !userId) {
-                props.navigation.navigate('Auth');
+                props.navigation.navigate('Login');
                 return;
             }
             const expirationTime = expirationDate.getTime() - new Date().getTime();

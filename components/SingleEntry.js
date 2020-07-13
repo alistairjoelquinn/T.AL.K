@@ -17,7 +17,7 @@ const SingleEntry = props => {
                     ? 
                         Colors.darkBlue 
                     : 
-                        Colors.paleYellow 
+                        ''
             }}>
                 <Text style={styles.text}>{
                     (props.day === 'Today' || props.day === 'Tomorrow') ?

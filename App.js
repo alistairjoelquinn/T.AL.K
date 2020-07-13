@@ -8,12 +8,14 @@ import * as Font from 'expo-font';
 import calendarReducer from './store/reducers/calendar';
 import toDoReducer from './store/reducers/todo';
 import authReducer from './store/reducers/auth';
+import shoppingReducer from './store/reducers/shopping';
 import TalkNavigator from './navigation/TalkNavigator';
 
 const rootReducer = combineReducers({
     calendar: calendarReducer,
     toDo: toDoReducer,
-    auth: authReducer
+    auth: authReducer,
+    shopping: shoppingReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
