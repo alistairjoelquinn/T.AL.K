@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button, RefreshControl } from 'react-native';
+import { StyleSheet, View, FlatList, Alert, Text, ActivityIndicator, Button, RefreshControl, Image } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../components/HeaderButton';
 import InputItem from '../components/item';
@@ -104,10 +103,6 @@ export default function ShoppingScreen({ navigation }) {
     }
 
     return (
-        <LinearGradient
-            colors={['dimgrey', Colors.grey]}
-            style={styles.gradient}
-        >   
             <View style={styles.screen}>
                 <InputContainer 
                     newItem={newItem}
@@ -139,8 +134,11 @@ export default function ShoppingScreen({ navigation }) {
                         /> 
                     }
                 />
+                <Image 
+                    source={require('../assets/shoppingDad.jpg')} 
+                    style={styles.image}
+                />
             </View>
-        </LinearGradient>
     );
 };
 
@@ -163,7 +161,7 @@ ShoppingScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         padding: 50,
-        backgroundColor: 'tomato',
+        backgroundColor: 'white',
         height: '100%'
     },
     gradient: {
@@ -176,5 +174,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1c1c1c',
+    },
+    image: {
+        position: 'absolute',
+        bottom: 0
     }
 });

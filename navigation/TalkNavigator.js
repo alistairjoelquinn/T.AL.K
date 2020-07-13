@@ -70,7 +70,10 @@ const config = {
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: 'dimgrey',
+            activeColor: Colors.paleText,
+            barStyle: {
+                backgroundColor: 'dimgrey'
+            },
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Home</Text> : 'Home'
         }
     },
@@ -84,7 +87,10 @@ const config = {
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.grey,
+            activeColor: Colors.paleText,
+            barStyle: {
+                backgroundColor: Colors.grey
+            },
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>To-Do</Text> : 'To-Do'
         }
     },
@@ -98,7 +104,10 @@ const config = {
                     color={tabInfo.tintColor}
                 />;
             },
-            tabBarColor: Colors.grey,
+            barStyle: {
+                backgroundColor: 'white',
+                color: Colors.grey
+            },
             tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'medium' }}>Shopping</Text> : 'Shopping'
         }
     }
@@ -106,11 +115,8 @@ const config = {
 
 const TabNavigator = createMaterialBottomTabNavigator(config,
     {
-        activeColor: Colors.paleText,
         shifting: true,
-        barStyle: {
-            backgroundColor: Colors.primary
-        }
+        
     }
 );
 
