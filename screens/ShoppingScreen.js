@@ -15,7 +15,6 @@ export default function ShoppingScreen({ navigation }) {
     const [isRefreshing, setIsRefreshing] = useState(false);
     dispatch = useDispatch();
     const list = useSelector(state => { 
-        console.log('state: ', state);
         return state.shopping.shoppingList;
     });
     const [modalVisible, setModalVisible] = useState(false);
@@ -187,6 +186,7 @@ const styles = StyleSheet.create({
     image: {
         position: 'absolute',
         bottom: 0,
+        left: 0,
         zIndex: 1
     },
     shoppingContainer: {

@@ -17,7 +17,7 @@ export default function Item({ content, onDelete, color, shopping }) {
                     onPress={() => setTouched(item => !item)}
                     style={styles.tick}
                 >
-                    {touched ? '✅' : '✔️'}
+                    {touched ? '✅' : '☑️'}
                 </Text>}
             </View>
         </TouchableOpacity>

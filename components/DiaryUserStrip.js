@@ -3,44 +3,43 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import moment from 'moment';
 
 import SingleEntry from './SingleEntry';
-import Colors from '../constants/Colors';
 
 const DiaryUserStrip = props => {    
     const colorList = [
         {
             colorDayCalc: moment(new Date()).format('dddd'),
             day: moment(new Date()).calendar().split(" at")[0],
-            dayInput: moment(new Date()).format('MMMM Do YYYY')
+            dayInput: moment(new Date()).format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
             day: moment(new Date()).add(1, 'day').calendar().split(" at")[0],
-            dayInput: moment(new Date()).add(1, 'day').format('MMMM Do YYYY')
+            dayInput: moment(new Date()).add(1, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(2, 'day').format('dddd'),
             day: moment(new Date()).add(2, 'day').format('dddd'),
-            dayInput: moment(new Date()).add(2, 'day').format('MMMM Do YYYY')
+            dayInput: moment(new Date()).add(2, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(3, 'day').format('dddd'),
             day: moment(new Date()).add(3, 'day').format('dddd'),
-            dayInput: moment(new Date()).add(3, 'day').format('MMMM Do YYYY')
+            dayInput: moment(new Date()).add(3, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(4, 'day').format('dddd'),
             day: moment(new Date()).add(4, 'day').format('dddd'),
-            dayInput: moment(new Date()).add(4, 'day').format('MMMM Do YYYY')
+            dayInput: moment(new Date()).add(4, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(5, 'day').format('dddd'),
             day: moment(new Date()).add(5, 'day').format('dddd'),
-            dayInput: moment(new Date()).add(5, 'day').format('MMMM Do YYYY')
+            dayInput: moment(new Date()).add(5, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
             day: moment(new Date()).add(6, 'day').format('dddd'),
-            dayInput: moment(new Date()).add(6, 'day').format('MMMM Do YYYY')
+            dayInput: moment(new Date()).add(6, 'day').format('dddd Do MMMM YYYY')
         }  
     ];
 
