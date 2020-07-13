@@ -103,6 +103,7 @@ export default function ShoppingScreen({ navigation }) {
     }
 
     return (
+        <View style={styles.shoppingContainer}>
             <View style={styles.screen}>
                 <InputContainer 
                     newItem={newItem}
@@ -110,6 +111,7 @@ export default function ShoppingScreen({ navigation }) {
                     cancelItemInput={cancelItemInput}
                 />
                 <FlatList 
+                    style={styles.transparent}
                     data={list} 
                     refreshControl={
                         <RefreshControl
@@ -121,6 +123,7 @@ export default function ShoppingScreen({ navigation }) {
                     keyExtractor={item => item.key}
                     renderItem={({item, index}) =>    
                         <InputItem 
+                            shopping
                             onDelete={() => {
                                 removeItem(item.key);
                             }}
@@ -134,11 +137,13 @@ export default function ShoppingScreen({ navigation }) {
                         /> 
                     }
                 />
+            </View>
+            <View style={styles.image}>
                 <Image 
                     source={require('../assets/shoppingDad.jpg')} 
-                    style={styles.image}
                 />
             </View>
+        </View>
     );
 };
 
@@ -159,10 +164,14 @@ ShoppingScreen.navigationOptions = navData => {
 };
 
 const styles = StyleSheet.create({
+    transparent: {
+        backgroundColor: 'transparent'
+    },
     screen: {
         padding: 50,
-        backgroundColor: 'white',
-        height: '100%'
+        backgroundColor: 'transparent',
+        height: '100%',
+        zIndex: 2
     },
     gradient: {
         flex: 1,
@@ -173,10 +182,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1c1c1c',
+        backgroundColor: 'white',
     },
     image: {
         position: 'absolute',
-        bottom: 0
+        bottom: 0,
+        zIndex: 1
+    },
+    shoppingContainer: {
+        backgroundColor: 'white'
     }
 });

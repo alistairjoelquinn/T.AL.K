@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'; 
 
-export default function Item({ content, onDelete, color }) {
+export default function Item({ content, onDelete, color, shopping }) {
+    const [touched, setTouched] = useState(false)
+
     return (
         <TouchableOpacity 
             onPress={onDelete}
@@ -11,6 +13,12 @@ export default function Item({ content, onDelete, color }) {
                 <Text style={styles.text}>
                     {content}
                 </Text>
+                {shopping && <Text
+                    onPress={() => setTouched(item => !item)}
+                    style={styles.tick}
+                >
+                    {touched ? '✅' : '✔️'}
+                </Text>}
             </View>
         </TouchableOpacity>
     );
@@ -18,14 +26,22 @@ export default function Item({ content, onDelete, color }) {
 
 const styles = StyleSheet.create({
     listItem: {
-        // width: '100%',
+        flexDirection: 'row',
         padding: 10,
         marginTop: 10,
         backgroundColor: '#ccc',
         borderWidth: 1,
-        borderRadius: 25
+        borderRadius: 25,
+        alignItems: 'center',
+        zIndex: 2
     },
     text: {
         fontSize: 16
+    },
+    tick: {
+        position: 'absolute',
+        right: 0,
+        zIndex: 0,
+        padding: 20
     }
 });
