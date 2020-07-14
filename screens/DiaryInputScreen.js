@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput, Platform } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import CalendarPicker from 'react-native-calendar-picker';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
+import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 import times from '../constants/Times';
 
@@ -51,7 +53,7 @@ const DiaryInputScren = props => {
 
     return (
         <View style={styles.screen}>
-            <View style={styles.nudgeUp}>
+            <View style={styles.centered}>
                 {!day && <CalendarPicker />}
                 <View style={{marginTop: 30}}>
                     <View style={styles.dropdown}>
@@ -62,7 +64,7 @@ const DiaryInputScren = props => {
                     </View>
                     <TextInput 
                         numberOfLines={4}
-                        placeholder="What's happening?" 
+                        placeholder="     What's happening?" 
                         placeholderTextColor='#1c1c1c'
                         style={styles.inputText}
                     />
@@ -75,14 +77,20 @@ const DiaryInputScren = props => {
 DiaryInputScren.navigationOptions = navData => {
     const today = navData.navigation.getParam('today');
     return {
-        headerTitle: 'Calendar Input',
         headerTintColor: Colors.paleText,
         headerStyle: {
             backgroundColor: 'dimgrey',
             shadowColor: 'transparent',
             elevation: 0
         },
-        headerTitle: today ? today : 'Enter something new...'
+        headerTitle: today ? today : 'Enter something new...',
+        headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <Item
+                title='Save'
+                iconName={Platform.OS === 'android' ? 'md-save' : 'ios-save'}
+                onPress={() => {}}
+            />
+        </HeaderButtons>
     }
 }
 
@@ -104,24 +112,24 @@ const styles = StyleSheet.create({
         marginVertical: 100
     },
     inputText: {
-        width: '80%',
+        width: 300,
         borderColor: 'black',
         borderWidth: 1,
         padding: 10,
-        marginBottom: 15,
+        marginBottom: 20,
         borderRadius: 30,
         backgroundColor: '#d2d2d2',
         color: '#1c1c1c',
         fontSize: 16,
     },
     dropdown: {
-        marginBottom: 15
+        marginBottom: 20
     },
-    nudgeUp: {
-        position: 'relative',
-        bottom: 40,
+    centered: {
         width: '100%',
-        alignItems: 'center'
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-evenly'
     }
 });
 
