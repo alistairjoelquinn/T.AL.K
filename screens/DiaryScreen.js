@@ -45,7 +45,7 @@ DiaryScreen.navigationOptions = navData => {
         headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item
                 title='Menu'
-                iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+                iconName='ios-log-out'
                 onPress={logout}
             />
         </HeaderButtons>,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, StyleSheet, TextInput, Platform, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import CalendarPicker from 'react-native-calendar-picker';
@@ -8,7 +8,7 @@ import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 import times from '../constants/Times';
 
-const DropdownName = () => {
+const DropdownName = props => {
     return (
         <RNPickerSelect
             style={{ ...pickerSelectStyles, placeholder: {
@@ -17,7 +17,7 @@ const DropdownName = () => {
               }}}
             placeholder={{label: 'Choose a person...'}}
             placeholderTextColor="red"
-            onValueChange={(value) => console.log(value)}
+            onValueChange={value => props.setName(value)}
             items={[
                 { label: 'Teniya', value: 'teniya', key: 1 },
                 { label: 'Alistair', value: 'alistair', key: 2 },
@@ -27,7 +27,7 @@ const DropdownName = () => {
     );
 };
 
-const DropdownTime = () => {
+const DropdownTime = props => {
     return (
         <RNPickerSelect
             style={{ ...pickerSelectStyles, placeholder: {
@@ -36,7 +36,11 @@ const DropdownTime = () => {
               }}}
             placeholder={{label: 'Choose a time...'}}
             placeholderTextColor="red"
-            onValueChange={(value) => console.log(value)}
+            onValueChange={value => {
+                console.log('value: ', value);
+                console.log('props: ', props);
+                return props.setTime(value => value);
+            }}
             items={times}
         />
     );
@@ -45,16 +49,25 @@ const DropdownTime = () => {
 const DiaryInputScren = props => {
     const day = props.navigation.getParam('currentDay');
     const person = props.navigation.getParam('currentPerson');
-    const { navigation } = props;
 
+    const [name, setName] = useState(person ? person : '');
+    const [date, setDate] = useState(day ? day : '');
+    const [time, setTime] = useState('');
+    const [activity, setActivity] = useState('');
+
+    const inputSaveHandler = useCallback(() => {
+        console.log('name, date, time, activity: ', name, date, time, activity);
+    }, [name, date, time, activity]);
+
+    const { navigation } = props;
     useEffect(() => {
-        navigation.setParams({today: day});
-    }, [day]);
+        navigation.setParams({today: day, submit: inputSaveHandler});
+    }, [day, inputSaveHandler]);
 
     return (
         <View style={styles.screen}>
             <View style={styles.centered}>
-                {!day && <CalendarPicker />}
+                {!day && <CalendarPicker setDate={setDate} />}
                 <View style={{marginTop: 30}}>
                     {person 
                         ? 
@@ -67,16 +80,17 @@ const DiaryInputScren = props => {
                     </View>
                         :  
                     <View style={styles.dropdown}>
-                            <DropdownName />
+                            <DropdownName setName={setName} />
                     </View>}
                     <View style={styles.dropdown}>
-                            <DropdownTime />
+                            <DropdownTime setTime={setTime} />
                     </View>
                     <TextInput 
                         numberOfLines={4}
                         placeholder="What's happening?" 
                         placeholderTextColor='#1c1c1c'
                         style={styles.inputText}
+                        onChangeText={value => setActivity(value)}
                     />
                 </View>
             </View>
@@ -86,6 +100,7 @@ const DiaryInputScren = props => {
 
 DiaryInputScren.navigationOptions = navData => {
     const today = navData.navigation.getParam('today');
+    const submit = navData.navigation.getParam('submit');
     return {
         headerTintColor: Colors.paleText,
         headerStyle: {
@@ -98,7 +113,7 @@ DiaryInputScren.navigationOptions = navData => {
             <Item
                 title='Save'
                 iconName={Platform.OS === 'android' ? 'md-save' : 'ios-save'}
-                onPress={() => {}}
+                onPress={submit}
             />
         </HeaderButtons>
     }

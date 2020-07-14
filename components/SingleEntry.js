@@ -16,7 +16,7 @@ const SingleEntry = props => {
                 borderWidth: 3,
                 borderColor: (props.colorDayCalc === 'Saturday' || props.colorDayCalc === 'Sunday')
                     ? 
-                        Colors.darkBlue 
+                        '#0048a1'
                     : 
                         ''
             }}>
