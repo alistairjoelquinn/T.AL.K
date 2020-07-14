@@ -19,9 +19,9 @@ const DropdownName = props => {
             placeholderTextColor="red"
             onValueChange={value => props.setName(value)}
             items={[
-                { label: 'Teniya', value: 'teniya', key: 1 },
-                { label: 'Alistair', value: 'alistair', key: 2 },
-                { label: 'Koen', value: 'koen', key: 3 },
+                { label: 'Teniya', value: 'Teniya', key: 1 },
+                { label: 'Alistair', value: 'Alistair', key: 2 },
+                { label: 'Koen', value: 'Koen', key: 3 },
             ]}
         />
     );
@@ -36,11 +36,7 @@ const DropdownTime = props => {
               }}}
             placeholder={{label: 'Choose a time...'}}
             placeholderTextColor="red"
-            onValueChange={value => {
-                console.log('value: ', value);
-                console.log('props: ', props);
-                return props.setTime(value => value);
-            }}
+            onValueChange={value => props.setTime(value)}
             items={times}
         />
     );
@@ -67,7 +63,7 @@ const DiaryInputScren = props => {
     return (
         <View style={styles.screen}>
             <View style={styles.centered}>
-                {!day && <CalendarPicker setDate={setDate} />}
+                {!day && <CalendarPicker onDateChange={value => setDate(value)} />}
                 <View style={{marginTop: 30}}>
                     {person 
                         ? 
