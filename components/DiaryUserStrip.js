@@ -56,6 +56,7 @@ const DiaryUserStrip = props => {
                         colorDayCalc={itemData.item.colorDayCalc}
                         day={props.first ? itemData.item.day : ''}
                         dayInput={itemData.item.dayInput}
+                        personInput={props.name}
                     />
                 }
             />

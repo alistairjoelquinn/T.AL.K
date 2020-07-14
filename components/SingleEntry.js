@@ -6,7 +6,8 @@ const SingleEntry = props => {
     return (
         <TouchableOpacity onPress={() => {
             props.navigation.navigate('DiaryInput', {
-                currentDay: props.dayInput
+                currentDay: props.dayInput,
+                currentPerson: props.personInput
             });
         }}>
             <View style={{ 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, TextInput, Platform } from 'react-native';
+import { View, StyleSheet, TextInput, Platform, Text } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import CalendarPicker from 'react-native-calendar-picker';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -13,7 +13,7 @@ const DropdownName = () => {
         <RNPickerSelect
             style={{ ...pickerSelectStyles, placeholder: {
                 color: '#1c1c1c',
-                fontSize: 16,
+                fontSize: 20,
               }}}
             placeholder={{label: 'Choose a person...'}}
             placeholderTextColor="red"
@@ -32,7 +32,7 @@ const DropdownTime = () => {
         <RNPickerSelect
             style={{ ...pickerSelectStyles, placeholder: {
                 color: '#1c1c1c',
-                fontSize: 16,
+                fontSize: 20,
               }}}
             placeholder={{label: 'Choose a time...'}}
             placeholderTextColor="red"
@@ -44,7 +44,7 @@ const DropdownTime = () => {
 
 const DiaryInputScren = props => {
     const day = props.navigation.getParam('currentDay');
-    console.log('day: ', day);
+    const person = props.navigation.getParam('currentPerson');
     const { navigation } = props;
 
     useEffect(() => {
@@ -56,15 +56,25 @@ const DiaryInputScren = props => {
             <View style={styles.centered}>
                 {!day && <CalendarPicker />}
                 <View style={{marginTop: 30}}>
+                    {person 
+                        ? 
+                    <View style={styles.inputText}>
+                        <Text style={
+                            {width: '100%', textAlign: 'center', fontSize: 20}
+                        }>
+                            {person}
+                        </Text> 
+                    </View>
+                        :  
                     <View style={styles.dropdown}>
                             <DropdownName />
-                    </View>
+                    </View>}
                     <View style={styles.dropdown}>
                             <DropdownTime />
                     </View>
                     <TextInput 
                         numberOfLines={4}
-                        placeholder="     What's happening?" 
+                        placeholder="What's happening?" 
                         placeholderTextColor='#1c1c1c'
                         style={styles.inputText}
                     />
@@ -120,7 +130,8 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         backgroundColor: '#d2d2d2',
         color: '#1c1c1c',
-        fontSize: 16,
+        fontSize: 20,
+        textAlign: 'center'
     },
     dropdown: {
         marginBottom: 20
@@ -142,7 +153,8 @@ const pickerSelectStyles = StyleSheet.create({
         color: '#1c1c1c',
         backgroundColor: '#d2d2d2',
         paddingHorizontal: 30,
-        paddingVertical: 10
+        paddingVertical: 10,
+        textAlign: 'center'
     },
     inputAndroid: {
         fontSize: 20,
@@ -152,7 +164,8 @@ const pickerSelectStyles = StyleSheet.create({
         color: '#1c1c1c',
         backgroundColor: '#d2d2d2',
         paddingHorizontal: 30,
-        paddingVertical: 10
+        paddingVertical: 10,
+        textAlign: 'center'
     }
 });
 
