@@ -1,7 +1,5 @@
 const initialState = {
-    calendarData: {
-        day: 'TEST_info for the reducer'
-    }
+    calendarData: []
 };
 
 export default (state = initialState, action) => {
