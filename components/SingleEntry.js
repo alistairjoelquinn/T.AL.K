@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 
 const SingleEntry = props => {
     const activitiesToday = props.calendarData.filter(entry => {
-        return entry.item.date === props.dayInput}
+        return entry.item.date === props.dayInput && entry.item.name === props.personInput}
     );
 
     return (
@@ -32,9 +32,9 @@ const SingleEntry = props => {
                     }
                 </Text>
                 {activitiesToday &&
-                    <ScrollView>
+                    <ScrollView style={styles.scroller}>
                         {activitiesToday.map(activity => {
-                            return <Text>{activity.item.time} {activity.item.activity}</Text>
+                            return <Text style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
                         })}
                     </ScrollView>
                 }
@@ -58,6 +58,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: Colors.grey,
         fontSize: 10
+    },
+    scroller: {
+        padding: 5
+    },
+    activityText: {
+        fontSize: 12
     }
 });
 
