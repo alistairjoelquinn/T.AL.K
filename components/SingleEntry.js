@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import DoubleClick from 'react-native-double-tap';
 
-
 import Colors from '../constants/Colors';
 
 const SingleEntry = props => {
@@ -14,7 +13,8 @@ const SingleEntry = props => {
             height: 70,
             width: '100%',
             borderRadius: 15,
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
+            overflow: 'scroll'
         },
         text: {
             marginTop: 3,
@@ -30,7 +30,7 @@ const SingleEntry = props => {
         scroller: {
             padding: 5,
             overflow: 'scroll',
-            height: '70%'
+            height: '90%'
         },
         activityText: {
             fontSize: 10,
@@ -42,47 +42,45 @@ const SingleEntry = props => {
         }
     });
 
-    const activitiesToday = props.calendarData.filter(entry => {
-        return entry.item.date === props.dayInput && entry.item.name === props.personInput}
-    );
+    const activitiesToday = props.calendarData
+        .filter(entry => entry.item.date === props.dayInput && entry.item.name === props.personInput)
+        .sort((a, b) => a.item.time.split(':')[0] - b.item.time.split(':')[0]);
 
     return (
-        <ScrollView>
-            <DoubleClick
-                doubleTap={() => {
-                    props.navigation.navigate('DiaryInput', {
-                        currentDay: props.dayInput,
-                        currentPerson: props.personInput
-                    });
-                }}
-                delay={200}
-            >
-                <View style={{ 
-                    ...styles.item, 
-                    backgroundColor: (props.colorDayCalc === 'Saturday' || props.colorDayCalc === 'Sunday')
-                    ? 
-                        Colors.grey
-                    :
-                        Colors.paleText,
-                    borderWidth: 3,
-                }}>
-                    {props.first && <Text style={styles.text}>
-                        {
-                            (props.day === 'Today' || props.day === 'Tomorrow') ?
-                            props.day :
-                            props.day.slice(0, 3)
-                        }
-                    </Text>}
-                    {activitiesToday &&
-                        <View style={styles.scroller}>
+            <View style={{ 
+                ...styles.item, 
+                backgroundColor: (props.colorDayCalc === 'Saturday' || props.colorDayCalc === 'Sunday')
+                ? 
+                    Colors.grey
+                :
+                    Colors.paleText,
+                borderWidth: 3,
+            }}>
+                {props.first && <Text style={styles.text}>
+                    {
+                        (props.day === 'Today' || props.day === 'Tomorrow') ?
+                        props.day :
+                        props.day.slice(0, 3)
+                    }
+                </Text>}
+                {activitiesToday &&
+                    <ScrollView style={styles.scroller}>
+                        <DoubleClick
+                            doubleTap={() => {
+                                props.navigation.navigate('DiaryInput', {
+                                    currentDay: props.dayInput,
+                                    currentPerson: props.personInput
+                                });
+                            }}
+                            delay={200}
+                        >
                             {activitiesToday.map(activity => {
                                 return <Text key={activity.key} style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
                             })}
-                        </View>
-                    }
-                </View>
-            </DoubleClick>
-        </ScrollView>
+                        </DoubleClick>
+                    </ScrollView>
+                }
+            </View>
     );
 };
 
