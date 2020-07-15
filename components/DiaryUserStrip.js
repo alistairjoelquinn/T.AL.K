@@ -19,6 +19,7 @@ const DiaryUserStrip = props => {
                         dayInput={itemData.item.dayInput}
                         personInput={props.name}
                         calendarData={props.calendarData}
+                        first={props.first}
                     />
                 }
             />
