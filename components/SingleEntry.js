@@ -32,6 +32,10 @@ const SingleEntry = props => {
             overflow: 'scroll',
             height: '90%'
         },
+        emptyScroller: {
+            height: 100,
+            width: 100
+        },
         activityText: {
             fontSize: 10,
             color: (props.colorDayCalc === 'Saturday' || props.colorDayCalc === 'Sunday')
@@ -45,6 +49,8 @@ const SingleEntry = props => {
     const activitiesToday = props.calendarData
         .filter(entry => entry.item.date === props.dayInput && entry.item.name === props.personInput)
         .sort((a, b) => a.item.time.split(':')[0] - b.item.time.split(':')[0]);
+
+    console.log('activitiesToday: ', activitiesToday);
 
     return (
             <View style={{ 
@@ -63,8 +69,24 @@ const SingleEntry = props => {
                         props.day.slice(0, 3)
                     }
                 </Text>}
-                {activitiesToday &&
-                    <ScrollView style={styles.scroller}>
+                {activitiesToday.length > 0
+                    ?
+                        <ScrollView style={styles.scroller}>
+                            <DoubleClick
+                                doubleTap={() => {
+                                    props.navigation.navigate('DiaryInput', {
+                                        currentDay: props.dayInput,
+                                        currentPerson: props.personInput
+                                    });
+                                }}
+                                delay={200}
+                            >
+                                {activitiesToday.map(activity => {
+                                    return <Text key={activity.key} style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
+                                })}
+                            </DoubleClick>
+                        </ScrollView>
+                    :
                         <DoubleClick
                             doubleTap={() => {
                                 props.navigation.navigate('DiaryInput', {
@@ -74,11 +96,10 @@ const SingleEntry = props => {
                             }}
                             delay={200}
                         >
-                            {activitiesToday.map(activity => {
-                                return <Text key={activity.key} style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
-                            })}
+                            <View>
+                                <Text style={styles.emptyScroller}></Text>
+                            </View>
                         </DoubleClick>
-                    </ScrollView>
                 }
             </View>
     );
