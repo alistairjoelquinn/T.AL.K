@@ -52,7 +52,6 @@ const DiaryScreen = props => {
     ];
     const dispatch = useDispatch();
     const calendarData = useSelector(state => state.calendar && state.calendar.calendarData);
-    console.log('calendarData: ', calendarData);
 
     const { navigation } = props;
     useEffect(() => {
@@ -71,9 +70,26 @@ const DiaryScreen = props => {
         >     
             <View style={styles.screen}>
                 <View style={styles.container}>
-                    <DiaryUserStrip colorList={colorList} navigation={props.navigation} first name="Teniya" />
-                    <DiaryUserStrip colorList={colorList} navigation={props.navigation} name="Alistair" />
-                    <DiaryUserStrip colorList={colorList} navigation={props.navigation} name="Koen" />
+                    <DiaryUserStrip 
+                        colorList={colorList} 
+                        navigation={props.navigation} 
+                        first 
+                        name="Teniya" 
+                        calendarData={calendarData}
+                    />
+                    <DiaryUserStrip 
+                        colorList={colorList} 
+                        navigation={props.navigation} 
+                        name="Alistair" 
+                        calendarData={calendarData}
+                    />
+                    <DiaryUserStrip 
+                        colorList={colorList} 
+                        navigation={props.navigation} 
+                        name="Koen" 
+                        calendarData={calendarData}
+                    />
+                    
                 </View>
             </View>
         </LinearGradient>

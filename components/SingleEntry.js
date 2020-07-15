@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Colors from '../constants/Colors';
 
 const SingleEntry = props => {
+    const activitiesToday = props.calendarData.filter(entry => {
+        return entry.item.date === props.dayInput}
+    );
+
     return (
         <TouchableOpacity onPress={() => {
             props.navigation.navigate('DiaryInput', {
@@ -20,11 +24,20 @@ const SingleEntry = props => {
                     : 
                         ''
             }}>
-                <Text style={styles.text}>{
-                    (props.day === 'Today' || props.day === 'Tomorrow') ?
-                    props.day :
-                    props.day.slice(0, 3)
-                }</Text>
+                <Text style={styles.text}>
+                    {
+                        (props.day === 'Today' || props.day === 'Tomorrow') ?
+                        props.day :
+                        props.day.slice(0, 3)
+                    }
+                </Text>
+                {activitiesToday &&
+                    <ScrollView>
+                        {activitiesToday.map(activity => {
+                            return <Text>{activity.item.time} {activity.item.activity}</Text>
+                        })}
+                    </ScrollView>
+                }
             </View>
         </TouchableOpacity>
     );
