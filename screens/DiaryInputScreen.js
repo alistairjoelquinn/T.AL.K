@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, StyleSheet, TextInput, Platform, Text } from 'react-native';
+import { useDispatch } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 import CalendarPicker from 'react-native-calendar-picker';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -7,6 +8,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 import times from '../constants/Times';
+import { addCalendarItem } from '../store/actions/calendar';
 
 const DropdownName = props => {
     return (
@@ -43,6 +45,7 @@ const DropdownTime = props => {
 };
 
 const DiaryInputScren = props => {
+    const dispatch = useDispatch();
     const day = props.navigation.getParam('currentDay');
     const person = props.navigation.getParam('currentPerson');
     const getMoment = props.navigation.getParam('getMoment');
@@ -53,7 +56,14 @@ const DiaryInputScren = props => {
     const [activity, setActivity] = useState('');
 
     const inputSaveHandler = useCallback(() => {
-        console.log('name, date, time, activity: ', name, date, time, activity);
+        let calendarItem = {
+            name: name,
+            date: date,
+            time: time,
+            activity: activity
+        };
+        console.log('calendarItem: ', calendarItem);
+        dispatch(addCalendarItem(calendarItem));
     }, [name, date, time, activity]);
 
     const { navigation } = props;
