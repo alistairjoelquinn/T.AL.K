@@ -10,7 +10,6 @@ const StartUpScreen = props => {
 
     useEffect(() => {
         const tryLogin = async () => {
-            console.log('trying to log');
             let userData;
             try {
                 userData = await AsyncStorage.getItem('userData');

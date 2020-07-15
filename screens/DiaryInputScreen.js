@@ -54,6 +54,7 @@ const DiaryInputScren = props => {
     const [date, setDate] = useState(day ? day : '');
     const [time, setTime] = useState('');
     const [activity, setActivity] = useState('');
+    const { navigation } = props;
 
     const inputSaveHandler = useCallback(() => {
         let calendarItem = {
@@ -62,11 +63,10 @@ const DiaryInputScren = props => {
             time: time,
             activity: activity
         };
-        console.log('calendarItem: ', calendarItem);
         dispatch(addCalendarItem(calendarItem));
+        navigation.pop();
     }, [name, date, time, activity]);
 
-    const { navigation } = props;
     useEffect(() => {
         navigation.setParams({today: day, submit: inputSaveHandler});
     }, [day, inputSaveHandler]);

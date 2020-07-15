@@ -10,6 +10,7 @@ import HeaderButton from '../components/HeaderButton';
 import DiaryUserStrip from '../components/DiaryUserStrip';
 import Colors from '../constants/Colors';
 import { logout } from '../store/actions/auth';
+import { fetchCalendarItems } from '../store/actions/calendar';
 
 const DiaryScreen = props => {
     const colorList = [
@@ -50,6 +51,8 @@ const DiaryScreen = props => {
         }  
     ];
     const dispatch = useDispatch();
+    const calendarData = useSelector(state => state.calendar && state.calendar.calendarData);
+    console.log('calendarData: ', calendarData);
 
     const { navigation } = props;
     useEffect(() => {
@@ -58,6 +61,7 @@ const DiaryScreen = props => {
             navigation.navigate('StartUp');
         };
         navigation.setParams({quit: logger});
+        dispatch(fetchCalendarItems());
     }, [dispatch]);
 
     return (
