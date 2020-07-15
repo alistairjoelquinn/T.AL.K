@@ -45,6 +45,7 @@ const DropdownTime = props => {
 const DiaryInputScren = props => {
     const day = props.navigation.getParam('currentDay');
     const person = props.navigation.getParam('currentPerson');
+    const getMoment = props.navigation.getParam('getMoment');
 
     const [name, setName] = useState(person ? person : '');
     const [date, setDate] = useState(day ? day : '');
@@ -63,7 +64,7 @@ const DiaryInputScren = props => {
     return (
         <View style={styles.screen}>
             <View style={styles.centered}>
-                {!day && <CalendarPicker onDateChange={value => setDate(value)} />}
+                {!day && <CalendarPicker onDateChange={value => setDate(getMoment(value))} />}
                 <View style={{marginTop: 30}}>
                     {person 
                         ? 

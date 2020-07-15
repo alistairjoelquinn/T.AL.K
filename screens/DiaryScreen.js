@@ -4,6 +4,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 
 import HeaderButton from '../components/HeaderButton';
 import DiaryUserStrip from '../components/DiaryUserStrip';
@@ -11,6 +12,43 @@ import Colors from '../constants/Colors';
 import { logout } from '../store/actions/auth';
 
 const DiaryScreen = props => {
+    const colorList = [
+        {
+            colorDayCalc: moment(new Date()).format('dddd'),
+            day: moment(new Date()).calendar().split(" at")[0],
+            dayInput: moment(new Date()).format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
+            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0],
+            dayInput: moment(new Date()).add(1, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(2, 'day').format('dddd'),
+            day: moment(new Date()).add(2, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(2, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(3, 'day').format('dddd'),
+            day: moment(new Date()).add(3, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(3, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(4, 'day').format('dddd'),
+            day: moment(new Date()).add(4, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(4, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(5, 'day').format('dddd'),
+            day: moment(new Date()).add(5, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(5, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
+            day: moment(new Date()).add(6, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(6, 'day').format('dddd Do MMMM YYYY')
+        }  
+    ];
     const dispatch = useDispatch();
 
     const { navigation } = props;
@@ -29,9 +67,9 @@ const DiaryScreen = props => {
         >     
             <View style={styles.screen}>
                 <View style={styles.container}>
-                    <DiaryUserStrip navigation={props.navigation} first name="Teniya" />
-                    <DiaryUserStrip navigation={props.navigation} name="Alistair" />
-                    <DiaryUserStrip navigation={props.navigation} name="Koen" />
+                    <DiaryUserStrip colorList={colorList} navigation={props.navigation} first name="Teniya" />
+                    <DiaryUserStrip colorList={colorList} navigation={props.navigation} name="Alistair" />
+                    <DiaryUserStrip colorList={colorList} navigation={props.navigation} name="Koen" />
                 </View>
             </View>
         </LinearGradient>
@@ -54,7 +92,9 @@ DiaryScreen.navigationOptions = navData => {
                 title='Input' 
                 iconName={'ios-add'} 
                 onPress={() => {
-                    navData.navigation.navigate('DiaryInput');
+                    navData.navigation.navigate('DiaryInput', {
+                        getMoment: date => moment(date).format('dddd Do MMMM YYYY')
+                    })
                 }}
             />
         </HeaderButtons>
