@@ -27,10 +27,14 @@ const SingleEntry = props => {
                     Colors.grey, 
             fontSize: 10
         },
-        scroller: {
+        scrollerOuter: {
             padding: 5,
-            overflow: 'scroll',
-            height: '90%'
+            overflow: 'scroll'
+        },
+        scrollerInner: {
+            minHeight: 60,
+            minWidth: 80,
+            marginBottom: 10
         },
         emptyScroller: {
             height: 100,
@@ -71,7 +75,7 @@ const SingleEntry = props => {
                 </Text>}
                 {activitiesToday.length > 0
                     ?
-                        <ScrollView style={styles.scroller}>
+                        <ScrollView style={styles.scrollerOuter}>
                             <DoubleClick
                                 doubleTap={() => {
                                     props.navigation.navigate('DiaryInput', {
@@ -81,9 +85,11 @@ const SingleEntry = props => {
                                 }}
                                 delay={200}
                             >
-                                {activitiesToday.map(activity => {
-                                    return <Text key={activity.key} style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
-                                })}
+                                <View style={styles.scrollerInner}>
+                                    {activitiesToday.map(activity => {
+                                        return <Text key={activity.key} style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
+                                    })}
+                                </View>
                             </DoubleClick>
                         </ScrollView>
                     :
