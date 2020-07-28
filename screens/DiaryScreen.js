@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
@@ -48,10 +48,48 @@ const DiaryScreen = props => {
             colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
             day: moment(new Date()).add(6, 'day').format('dddd'),
             dayInput: moment(new Date()).add(6, 'day').format('dddd Do MMMM YYYY')
-        }  
+        }
+    ];
+    const colorList2 = [
+        {
+            colorDayCalc: moment(new Date()).format('dddd'),
+            day: moment(new Date()).calendar().split(" at")[0],
+            dayInput: moment(new Date()).add(7, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
+            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0],
+            dayInput: moment(new Date()).add(8, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(2, 'day').format('dddd'),
+            day: moment(new Date()).add(2, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(9, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(3, 'day').format('dddd'),
+            day: moment(new Date()).add(3, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(10, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(4, 'day').format('dddd'),
+            day: moment(new Date()).add(4, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(11, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(5, 'day').format('dddd'),
+            day: moment(new Date()).add(5, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(12, 'day').format('dddd Do MMMM YYYY')
+        },
+        {
+            colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
+            day: moment(new Date()).add(6, 'day').format('dddd'),
+            dayInput: moment(new Date()).add(13, 'day').format('dddd Do MMMM YYYY')
+        }
     ];
     const dispatch = useDispatch();
     const calendarData = useSelector(state => state.calendar && state.calendar.calendarData);
+    const [weekOne, setWeekOne] = useState(true);
 
     const { navigation } = props;
     useEffect(() => {
@@ -59,7 +97,7 @@ const DiaryScreen = props => {
             dispatch(logout());
             navigation.navigate('StartUp');
         };
-        navigation.setParams({quit: logger});
+        navigation.setParams({ quit: logger });
         dispatch(fetchCalendarItems());
     }, [dispatch]);
 
@@ -67,29 +105,48 @@ const DiaryScreen = props => {
         <LinearGradient
             colors={[Colors.grey, 'dimgrey']}
             style={styles.gradient}
-        >     
+        >
             <View style={styles.screen}>
                 <View style={styles.container}>
-                    <DiaryUserStrip 
-                        colorList={colorList} 
-                        navigation={props.navigation} 
-                        first 
-                        name="Teniya" 
+                    {weekOne ||
+                        <View style={styles.iconContainer}>
+                            <Text
+                                style={styles.icon}
+                                onPress={() => {
+                                    setWeekOne(week => !week);
+                                }}
+                            >◀️</Text>
+                        </View>
+                    }
+                    <DiaryUserStrip
+                        colorList={weekOne ? colorList : colorList2}
+                        navigation={props.navigation}
+                        first
+                        name="Teniya"
                         calendarData={calendarData}
                     />
-                    <DiaryUserStrip 
-                        colorList={colorList} 
-                        navigation={props.navigation} 
-                        name="Alistair" 
+                    <DiaryUserStrip
+                        colorList={weekOne ? colorList : colorList2}
+                        navigation={props.navigation}
+                        name="Alistair"
                         calendarData={calendarData}
                     />
-                    <DiaryUserStrip 
-                        colorList={colorList} 
-                        navigation={props.navigation} 
-                        name="Koen" 
+                    <DiaryUserStrip
+                        colorList={weekOne ? colorList : colorList2}
+                        navigation={props.navigation}
+                        name="Koen"
                         calendarData={calendarData}
                     />
-                    
+                    {weekOne &&
+                        <View style={styles.iconContainer}>
+                            <Text
+                                style={styles.icon}
+                                onPress={() => {
+                                    setWeekOne(week => !week);
+                                }}
+                            >▶️</Text>
+                        </View>
+                    }
                 </View>
             </View>
         </LinearGradient>
@@ -108,9 +165,9 @@ DiaryScreen.navigationOptions = navData => {
             />
         </HeaderButtons>,
         headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Input' 
-                iconName={'ios-add'} 
+            <Item
+                title='Input'
+                iconName={'ios-add'}
                 onPress={() => {
                     navData.navigation.navigate('DiaryInput', {
                         getMoment: date => moment(date).format('dddd Do MMMM YYYY')
@@ -124,8 +181,7 @@ DiaryScreen.navigationOptions = navData => {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: 'transparent',
-        justifyContent: 'center'
+        backgroundColor: 'red',
     },
     container: {
         marginTop: 5,
@@ -142,6 +198,13 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#d2d2d2'
+    },
+    iconContainer: {
+        width: 20,
+        backgroundColor: 'green'
+    },
+    icon: {
+        fontSize: 20
     }
 });
 
