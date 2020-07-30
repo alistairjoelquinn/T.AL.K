@@ -104,7 +104,15 @@ const DiaryInputScren = props => {
                         style={styles.inputText}
                         onChangeText={value => setActivity(value)}
                     />
-                    {removeItems && <Button title="Remove Items?" color="white" onPress={() => { }} />}
+                    {removeItems &&
+                        <Button
+                            title="Remove Items?"
+                            color="white"
+                            onPress={() => {
+                                props.navigation.navigate('RemoveItems');
+                            }}
+                        />
+                    }
                 </View>
             </View>
         </View>

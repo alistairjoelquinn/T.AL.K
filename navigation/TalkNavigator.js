@@ -9,6 +9,7 @@ import DiaryScreen from '../screens/DiaryScreen';
 import LoginScreen from '../screens/LoginScreen';
 import StartUpScreen from '../screens/StartUpScreen';
 import DiaryInputScreen from '../screens/DiaryInputScreen';
+import RemoveItemsScreen from '../screens/RemoveItemsScreen';
 import ToDoScreen from '../screens/ToDoScreen';
 import ShoppingScreen from '../screens/ShoppingScreen'
 import Colors from '../constants/Colors';
@@ -30,7 +31,8 @@ const defaultStackOptions = {
 
 const DiaryNavigator = createStackNavigator({
     Diary: DiaryScreen,
-    DiaryInput: DiaryInputScreen
+    DiaryInput: DiaryInputScreen,
+    RemoveItems: RemoveItemsScreen
 }, {
     defaultNavigationOptions: defaultStackOptions
 });
