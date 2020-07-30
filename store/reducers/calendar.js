@@ -28,7 +28,6 @@ export default (state = initialState, action) => {
                 ]
             };
         case REMOVE_CALENDAR_ITEM:
-            console.log('reducer is running');
             const newList = state.calendarData.filter(listItem => {
                 return listItem.key !== action.item.key;
             });

@@ -66,7 +66,6 @@ export const addCalendarItem = item => {
 };
 
 export const removeCalendarItem = item => {
-    console.log('item: ', item);
     return async (dispatch, getState) => {
         const token = getState().auth.token;
         const response = await fetch(`${dbLinkCalendarRemove}${item.key}.json?auth=${token}`, {
