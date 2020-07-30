@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +11,24 @@ const RemoveItemsScreen = props => {
     const activitiesToday = useSelector(state => state.calendar.removeItems);
     const dispatch = useDispatch();
 
+    const removeItem = activity => {
+        Alert.alert(
+            "Remove Item",
+            "Are you sure you want to remove this item?",
+            [
+                {
+                    text: "No",
+                    style: "cancel"
+                },
+                {
+                    text: "Yes", onPress: () =>
+                        dispatch(removeCalendarItem(activity))
+                }
+            ],
+            { cancelable: true }
+        );
+    };
+
     return (
         <LinearGradient
             colors={[Colors.grey, 'dimgrey']}
@@ -19,26 +37,22 @@ const RemoveItemsScreen = props => {
             <View style={styles.container}>
                 {
                     activitiesToday
-                        ?
-                        activitiesToday.map(activity => {
-                            return (
-                                <View style={styles.smallCont} key={activity.key}>
-                                    <Ionicons
-                                        name="ios-trash"
-                                        size={32}
-                                        color="white"
-                                        onPress={() => {
-                                            dispatch(removeCalendarItem(activity))
-                                        }}
-                                    />
-                                    <Text style={styles.activityText}>
-                                        {activity.item.time} - {activity.item.activity}
-                                    </Text>
-                                </View>
-                            );
-                        })
-                        :
-                        <Text style={styles.text}>Loading...</Text>
+                    &&
+                    activitiesToday.map(activity => {
+                        return (
+                            <View style={styles.smallCont} key={activity.key}>
+                                <Ionicons
+                                    name="ios-trash"
+                                    size={32}
+                                    color="white"
+                                    onPress={() => removeItem(activity)}
+                                />
+                                <Text style={styles.activityText}>
+                                    {activity.item.time} - {activity.item.activity}
+                                </Text>
+                            </View>
+                        );
+                    })
                 }
             </View>
         </LinearGradient>

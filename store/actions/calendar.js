@@ -12,7 +12,6 @@ export const addActivitiesToday = activities => {
     };
 };
 
-
 export const fetchCalendarItems = () => {
     return async (dispatch, getState) => {
         const token = getState().auth.token;
