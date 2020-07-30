@@ -28,13 +28,17 @@ export default (state = initialState, action) => {
                 ]
             };
         case REMOVE_CALENDAR_ITEM:
-            let shorter = state.calendarData;
-            let newList = shorter.filter(listItem => {
-                return listItem.key !== action.item;
+            console.log('reducer is running');
+            const newList = state.calendarData.filter(listItem => {
+                return listItem.key !== action.item.key;
+            });
+            const newRemoveList = state.removeItems.filter(listItem => {
+                return listItem.key !== action.item.key;
             });
             return {
                 ...state,
-                calendarData: newList
+                calendarData: newList,
+                removeItems: newRemoveList
             };
     }
     return state;

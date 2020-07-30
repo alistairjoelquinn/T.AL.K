@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
+import { removeCalendarItem } from '../store/actions/calendar';
 
 const RemoveItemsScreen = props => {
     const activitiesToday = useSelector(state => state.calendar.removeItems);
-    console.log('activitiesToday: ', activitiesToday);
+    const dispatch = useDispatch();
 
     return (
         <LinearGradient
@@ -21,21 +22,23 @@ const RemoveItemsScreen = props => {
                         ?
                         activitiesToday.map(activity => {
                             return (
-                                <View style={styles.smallCont}>
+                                <View style={styles.smallCont} key={activity.key}>
                                     <Ionicons
                                         name="ios-trash"
                                         size={32}
                                         color="white"
-                                        onPress={() => { }}
+                                        onPress={() => {
+                                            dispatch(removeCalendarItem(activity))
+                                        }}
                                     />
-                                    <Text key={activity.key} style={styles.activityText}>
+                                    <Text style={styles.activityText}>
                                         {activity.item.time} - {activity.item.activity}
                                     </Text>
                                 </View>
                             );
                         })
                         :
-                        <Text style={styles.text}>Remove Items Screen</Text>
+                        <Text style={styles.text}>Loading...</Text>
                 }
             </View>
         </LinearGradient>
