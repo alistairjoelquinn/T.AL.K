@@ -11,10 +11,14 @@ const RemoveItemsScreen = props => {
             style={styles.gradient}
         >
             <View>
-                <Text>Remove Items Screen</Text>
+                <Text style={styles.text}>Remove Items Screen</Text>
             </View>
         </LinearGradient>
     );
+};
+
+RemoveItemsScreen.navigationOptions = {
+    headerTitle: 'Remove Items'
 };
 
 const styles = StyleSheet.create({
@@ -22,6 +26,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    text: {
+        color: 'white'
     }
 });
 
