@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, StyleSheet, TextInput, Platform, Text } from 'react-native';
+import { View, StyleSheet, TextInput, Platform, Text, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 import CalendarPicker from 'react-native-calendar-picker';
@@ -13,11 +13,13 @@ import { addCalendarItem } from '../store/actions/calendar';
 const DropdownName = props => {
     return (
         <RNPickerSelect
-            style={{ ...pickerSelectStyles, placeholder: {
-                color: '#1c1c1c',
-                fontSize: 20,
-              }}}
-            placeholder={{label: 'Choose a person...'}}
+            style={{
+                ...pickerSelectStyles, placeholder: {
+                    color: '#1c1c1c',
+                    fontSize: 20,
+                }
+            }}
+            placeholder={{ label: 'Choose a person...' }}
             placeholderTextColor="red"
             onValueChange={value => props.setName(value)}
             items={[
@@ -32,11 +34,13 @@ const DropdownName = props => {
 const DropdownTime = props => {
     return (
         <RNPickerSelect
-            style={{ ...pickerSelectStyles, placeholder: {
-                color: '#1c1c1c',
-                fontSize: 20,
-              }}}
-            placeholder={{label: 'Choose a time...'}}
+            style={{
+                ...pickerSelectStyles, placeholder: {
+                    color: '#1c1c1c',
+                    fontSize: 20,
+                }
+            }}
+            placeholder={{ label: 'Choose a time...' }}
             placeholderTextColor="red"
             onValueChange={value => props.setTime(value)}
             items={times}
@@ -49,6 +53,7 @@ const DiaryInputScren = props => {
     const day = props.navigation.getParam('currentDay');
     const person = props.navigation.getParam('currentPerson');
     const getMoment = props.navigation.getParam('getMoment');
+    const removeItems = props.navigation.getParam('editable');
 
     const [name, setName] = useState(person ? person : '');
     const [date, setDate] = useState(day ? day : '');
@@ -68,37 +73,38 @@ const DiaryInputScren = props => {
     }, [name, date, time, activity]);
 
     useEffect(() => {
-        navigation.setParams({today: day, submit: inputSaveHandler});
+        navigation.setParams({ today: day, submit: inputSaveHandler });
     }, [day, inputSaveHandler]);
 
     return (
         <View style={styles.screen}>
             <View style={styles.centered}>
                 {!day && <CalendarPicker onDateChange={value => setDate(getMoment(value))} />}
-                <View style={{marginTop: 30}}>
-                    {person 
-                        ? 
-                    <View style={styles.inputText}>
-                        <Text style={
-                            {width: '100%', textAlign: 'center', fontSize: 20}
-                        }>
-                            {person}
-                        </Text> 
-                    </View>
-                        :  
-                    <View style={styles.dropdown}>
+                <View style={{ marginTop: 30 }}>
+                    {person
+                        ?
+                        <View style={styles.inputText}>
+                            <Text style={
+                                { width: '100%', textAlign: 'center', fontSize: 20 }
+                            }>
+                                {person}
+                            </Text>
+                        </View>
+                        :
+                        <View style={styles.dropdown}>
                             <DropdownName setName={setName} />
-                    </View>}
+                        </View>}
                     <View style={styles.dropdown}>
-                            <DropdownTime setTime={setTime} />
+                        <DropdownTime setTime={setTime} />
                     </View>
-                    <TextInput 
+                    <TextInput
                         numberOfLines={4}
-                        placeholder="What's happening?" 
+                        placeholder="What's happening?"
                         placeholderTextColor='#1c1c1c'
                         style={styles.inputText}
                         onChangeText={value => setActivity(value)}
                     />
+                    {removeItems && <Button title="Remove Items?" color="white" onPress={() => { }} />}
                 </View>
             </View>
         </View>

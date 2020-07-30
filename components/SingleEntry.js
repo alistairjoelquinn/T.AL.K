@@ -80,7 +80,8 @@ const SingleEntry = props => {
                         doubleTap={() => {
                             props.navigation.navigate('DiaryInput', {
                                 currentDay: props.dayInput,
-                                currentPerson: props.personInput
+                                currentPerson: props.personInput,
+                                editable: true
                             });
                         }}
                         delay={200}
@@ -97,7 +98,8 @@ const SingleEntry = props => {
                     doubleTap={() => {
                         props.navigation.navigate('DiaryInput', {
                             currentDay: props.dayInput,
-                            currentPerson: props.personInput
+                            currentPerson: props.personInput,
+                            editable: false
                         });
                     }}
                     delay={200}
