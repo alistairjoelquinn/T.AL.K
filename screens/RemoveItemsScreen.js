@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
@@ -20,11 +21,12 @@ const RemoveItemsScreen = props => {
                         ?
                         activitiesToday.map(activity => {
                             return (
-                                <View>
+                                <View style={styles.smallCont}>
                                     <Ionicons
-                                        name="md-arrow-round-back"
+                                        name="ios-trash"
                                         size={32}
                                         color="white"
+                                        onPress={() => { }}
                                     />
                                     <Text key={activity.key} style={styles.activityText}>
                                         {activity.item.time} - {activity.item.activity}
@@ -55,10 +57,15 @@ const styles = StyleSheet.create({
     },
     activityText: {
         fontSize: 25,
-        color: 'white'
+        color: 'white',
+        paddingLeft: 20
     },
     container: {
         width: '80%'
+    },
+    smallCont: {
+        flexDirection: 'row',
+        paddingBottom: 20
     }
 });
 
