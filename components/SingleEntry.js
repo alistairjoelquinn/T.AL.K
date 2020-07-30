@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import DoubleClick from 'react-native-double-tap';
+import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
+import { addActivitiesToday } from '../store/actions/calendar';
 
 const SingleEntry = props => {
+    const dispatch = useDispatch();
 
     const styles = StyleSheet.create({
         item: {
@@ -54,7 +57,6 @@ const SingleEntry = props => {
         .filter(entry => entry.item.date === props.dayInput && entry.item.name === props.personInput)
         .sort((a, b) => a.item.time.split(':')[0] - b.item.time.split(':')[0]);
 
-    // console.log('activitiesToday: ', activitiesToday);
 
     return (
         <View style={{
@@ -77,7 +79,8 @@ const SingleEntry = props => {
                 ?
                 <ScrollView style={styles.scrollerOuter}>
                     <DoubleClick
-                        doubleTap={() => {
+                        doubleTap={async () => {
+                            await dispatch(addActivitiesToday(activitiesToday))
                             props.navigation.navigate('DiaryInput', {
                                 currentDay: props.dayInput,
                                 currentPerson: props.personInput,
