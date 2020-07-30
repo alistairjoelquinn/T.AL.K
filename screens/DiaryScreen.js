@@ -4,6 +4,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
 
 import HeaderButton from '../components/HeaderButton';
@@ -109,12 +110,17 @@ const DiaryScreen = props => {
             <View style={styles.screen}>
                 <View style={styles.container}>
                     <View style={styles.iconContainer}>
-                        {weekOne || <Text
-                            style={styles.icon}
-                            onPress={() => {
-                                setWeekOne(week => !week);
-                            }}
-                        >◀️</Text>}
+                        {
+                            weekOne ||
+                            <Text
+                                style={styles.icon}
+                                onPress={() => {
+                                    setWeekOne(week => !week);
+                                }}
+                            >
+                                <Ionicons name="md-arrow-round-back" size={32} color="white" />
+                            </Text>
+                        }
                     </View>
                     <DiaryUserStrip
                         colorList={weekOne ? colorList : colorList2}
@@ -136,12 +142,17 @@ const DiaryScreen = props => {
                         calendarData={calendarData}
                     />
                     <View style={styles.iconContainer}>
-                        {weekOne && <Text
-                            style={styles.icon}
-                            onPress={() => {
-                                setWeekOne(week => !week);
-                            }}
-                        >▶️</Text>}
+                        {
+                            weekOne &&
+                            <Text
+                                style={styles.icon}
+                                onPress={() => {
+                                    setWeekOne(week => !week);
+                                }}
+                            >
+                                <Ionicons name="md-arrow-round-forward" size={32} color="white" />
+                            </Text>
+                        }
                     </View>
                 </View>
             </View>
@@ -201,7 +212,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         fontSize: 20,
-        padding: 5
+        paddingLeft: 10,
     }
 });
 
