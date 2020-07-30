@@ -6,20 +6,35 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Colors from '../constants/Colors';
 
 const RemoveItemsScreen = props => {
-    const activitiesToday = useSelector(state => {
-        console.log('state.calendar.removeItems: ', state.calendar.removeItems);
-    });
+    const activitiesToday = useSelector(state => state.calendar.removeItems);
+    console.log('activitiesToday: ', activitiesToday);
 
     return (
         <LinearGradient
             colors={[Colors.grey, 'dimgrey']}
             style={styles.gradient}
         >
-            <View>
-                <Text style={styles.text}>Remove Items Screen</Text>
-                {/* {activitiesToday.map(activity => {
-                    return <Text key={activity.key} style={styles.activityText}>{activity.item.time} {activity.item.activity}</Text>
-                })} */}
+            <View style={styles.container}>
+                {
+                    activitiesToday
+                        ?
+                        activitiesToday.map(activity => {
+                            return (
+                                <View>
+                                    <Ionicons
+                                        name="md-arrow-round-back"
+                                        size={32}
+                                        color="white"
+                                    />
+                                    <Text key={activity.key} style={styles.activityText}>
+                                        {activity.item.time} - {activity.item.activity}
+                                    </Text>
+                                </View>
+                            );
+                        })
+                        :
+                        <Text style={styles.text}>Remove Items Screen</Text>
+                }
             </View>
         </LinearGradient>
     );
@@ -37,6 +52,13 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white'
+    },
+    activityText: {
+        fontSize: 25,
+        color: 'white'
+    },
+    container: {
+        width: '80%'
     }
 });
 

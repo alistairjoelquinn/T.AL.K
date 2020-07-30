@@ -57,7 +57,6 @@ const SingleEntry = props => {
         .filter(entry => entry.item.date === props.dayInput && entry.item.name === props.personInput)
         .sort((a, b) => a.item.time.split(':')[0] - b.item.time.split(':')[0]);
 
-
     return (
         <View style={{
             ...styles.item,

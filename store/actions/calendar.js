@@ -8,7 +8,7 @@ export const ADD_ACTIVITIES = 'ADD_ACTIVITIES';
 export const addActivitiesToday = activities => {
     return {
         type: ADD_ACTIVITIES,
-        action: activities
+        data: activities
     };
 };
 

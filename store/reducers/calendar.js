@@ -8,11 +8,9 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_ACTIVITIES:
-            console.log('state.removeItems: ', state.removeItems);
-            console.log('action.activities: ', action.activities);
             return {
                 ...state,
-                removeItems: action.activities
+                removeItems: action.data
             };
         case SET_CALENDAR:
             return {
