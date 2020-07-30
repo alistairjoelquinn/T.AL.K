@@ -108,16 +108,14 @@ const DiaryScreen = props => {
         >
             <View style={styles.screen}>
                 <View style={styles.container}>
-                    {weekOne ||
-                        <View style={styles.iconContainer}>
-                            <Text
-                                style={styles.icon}
-                                onPress={() => {
-                                    setWeekOne(week => !week);
-                                }}
-                            >◀️</Text>
-                        </View>
-                    }
+                    <View style={styles.iconContainer}>
+                        {weekOne || <Text
+                            style={styles.icon}
+                            onPress={() => {
+                                setWeekOne(week => !week);
+                            }}
+                        >◀️</Text>}
+                    </View>
                     <DiaryUserStrip
                         colorList={weekOne ? colorList : colorList2}
                         navigation={props.navigation}
@@ -137,16 +135,14 @@ const DiaryScreen = props => {
                         name="Koen"
                         calendarData={calendarData}
                     />
-                    {weekOne &&
-                        <View style={styles.iconContainer}>
-                            <Text
-                                style={styles.icon}
-                                onPress={() => {
-                                    setWeekOne(week => !week);
-                                }}
-                            >▶️</Text>
-                        </View>
-                    }
+                    <View style={styles.iconContainer}>
+                        {weekOne && <Text
+                            style={styles.icon}
+                            onPress={() => {
+                                setWeekOne(week => !week);
+                            }}
+                        >▶️</Text>}
+                    </View>
                 </View>
             </View>
         </LinearGradient>
@@ -180,15 +176,15 @@ DiaryScreen.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
-        backgroundColor: 'red',
+        flex: 1
     },
     container: {
         marginTop: 5,
         height: '100%',
+        width: '100%',
         marginHorizontal: '5%',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
 
     },
     gradient: {
@@ -200,11 +196,12 @@ const styles = StyleSheet.create({
         color: '#d2d2d2'
     },
     iconContainer: {
-        width: 20,
-        backgroundColor: 'green'
+        width: 40,
+        justifyContent: 'center'
     },
     icon: {
-        fontSize: 20
+        fontSize: 20,
+        padding: 5
     }
 });
 
