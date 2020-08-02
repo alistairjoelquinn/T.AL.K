@@ -14,7 +14,7 @@ export default function ShoppingScreen({ navigation }) {
     const [error, setError] = useState();
     const [isRefreshing, setIsRefreshing] = useState(false);
     dispatch = useDispatch();
-    const list = useSelector(state => { 
+    const list = useSelector(state => {
         return state.shopping.shoppingList;
     });
     const [modalVisible, setModalVisible] = useState(false);
@@ -24,10 +24,10 @@ export default function ShoppingScreen({ navigation }) {
         setIsRefreshing(true);
         try {
             await dispatch(fetchShoppingListItems());
-        } catch(err) {
+        } catch (err) {
             console.log('err getting shopping items: ', err);
             setError(err.message);
-        } 
+        }
         setIsRefreshing(false);
     }, [dispatch, setIsLoading, setError]);
 
@@ -37,9 +37,9 @@ export default function ShoppingScreen({ navigation }) {
             setIsLoading(false);
         });
     }, [dispatch, loadProducts])
-   
+
     const newItem = item => {
-        if(item.length === 0 || item === '') {
+        if (item.length === 0 || item === '') {
             return;
         }
         dispatch(addShoppingItem(item));
@@ -54,8 +54,9 @@ export default function ShoppingScreen({ navigation }) {
                     text: "No",
                     style: "cancel"
                 },
-                { text: "Yes", onPress: () =>  
-                    dispatch(removeShoppingItem(itemId))
+                {
+                    text: "Yes", onPress: () =>
+                        dispatch(removeShoppingItem(itemId))
                 }
             ],
             { cancelable: true }
@@ -66,15 +67,15 @@ export default function ShoppingScreen({ navigation }) {
         setModalVisible(false);
     }
     useEffect(() => {
-        navigation.setParams({toggle: setModalVisible});
+        navigation.setParams({ toggle: setModalVisible });
     }, []);
 
-    if(error) {
+    if (error) {
         return (
             <View style={styles.centered}>
-                <Text style={{color: Colors.paleText}}>An error has occurred!</Text>
-                <Button 
-                    title="Try Again!" 
+                <Text style={{ color: Colors.paleText }}>An error has occurred!</Text>
+                <Button
+                    title="Try Again!"
                     onPress={loadProducts}
                     color={Colors.paleText}
                 />
@@ -82,21 +83,21 @@ export default function ShoppingScreen({ navigation }) {
         );
     }
 
-    if(list.length === 0 && !modalVisible && isLoading) {
+    if (list.length === 0 && !modalVisible && isLoading) {
         return (
             <View style={styles.centered}>
-                <ActivityIndicator  
-                    size='large' 
+                <ActivityIndicator
+                    size='large'
                     color={Colors.paleText}
                 />
             </View>
         );
     }
 
-    if(list.length === 0 && !modalVisible) {
+    if (list.length === 0 && !modalVisible) {
         return (
             <View style={styles.centered}>
-                <Text style={{color: Colors.paleText}}>List current empty!</Text>
+                <Text style={{ color: Colors.paleText }}>List current empty!</Text>
             </View>
         );
     }
@@ -104,42 +105,42 @@ export default function ShoppingScreen({ navigation }) {
     return (
         <View style={styles.shoppingContainer}>
             <View style={styles.screen}>
-                <InputContainer 
+                <InputContainer
                     newItem={newItem}
                     visible={modalVisible}
                     cancelItemInput={cancelItemInput}
                 />
-                <FlatList 
+                <FlatList
                     style={styles.transparent}
-                    data={list} 
+                    data={list}
                     refreshControl={
                         <RefreshControl
                             onRefresh={loadProducts}
                             refreshing={isRefreshing}
-                            tintColor="white"
+                            tintColor="black"
                         />
                     }
                     keyExtractor={item => item.key}
-                    renderItem={({item, index}) =>    
-                        <InputItem 
+                    renderItem={({ item, index }) =>
+                        <InputItem
                             shopping
                             onDelete={() => {
                                 removeItem(item.key);
                             }}
                             content={item.item}
-                            color={index % 2 === 0 
-                                ? 
-                                    {borderColor: Colors.paleYellow} 
-                                : 
-                                    {borderColor: Colors.palePurple}
+                            color={index % 2 === 0
+                                ?
+                                { borderColor: Colors.paleYellow }
+                                :
+                                { borderColor: Colors.palePurple }
                             }
-                        /> 
+                        />
                     }
                 />
             </View>
             <View style={styles.image}>
-                <Image 
-                    source={require('../assets/shoppingDad.jpg')} 
+                <Image
+                    source={require('../assets/shoppingDad.jpg')}
                 />
             </View>
         </View>
@@ -151,14 +152,14 @@ ShoppingScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Shopping List',
         headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Input' 
-                iconName={'ios-add'} 
+            <Item
+                title='Input'
+                iconName={'ios-add'}
                 onPress={() => {
                     toggle(true);
-                }} 
+                }}
             />
-        </HeaderButtons>
+        </HeaderButtons>,
     };
 };
 

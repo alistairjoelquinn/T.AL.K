@@ -12,15 +12,17 @@ const DiaryUserStrip = props => {
                 keyExtractor={item => {
                     return item.colorDayCalc
                 }}
-                renderItem={itemData => <SingleEntry
-                    navigation={props.navigation}
-                    colorDayCalc={itemData.item.colorDayCalc}
-                    day={props.first ? itemData.item.day : ''}
-                    dayInput={itemData.item.dayInput}
-                    personInput={props.name}
-                    calendarData={props.calendarData}
-                    first={props.first}
-                />
+                renderItem={itemData =>
+                    <SingleEntry
+                        navigation={props.navigation}
+                        colorDayCalc={itemData.item.colorDayCalc}
+                        day={props.first ? itemData.item.day : ''}
+                        dayInput={itemData.item.dayInput}
+                        personInput={props.name}
+                        calendarData={props.calendarData}
+                        first={props.first}
+                        weekOne={props.weekOne}
+                    />
                 }
             />
         </View>

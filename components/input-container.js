@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Modal, Platform } from 'react-native'; 
+import { View, TextInput, Button, StyleSheet, Modal, Platform } from 'react-native';
 
 import Colors from '../constants/Colors';
 
@@ -14,13 +14,13 @@ export default function InputContainer({ newItem, visible, cancelItemInput }) {
     }
 
     return (
-        <Modal 
+        <Modal
             visible={visible}
             animationType="slide"
         >
             <View style={styles.inputContainer}>
-                <TextInput 
-                    placeholder='What do we need to do?'
+                <TextInput
+                    placeholder='Talk to me...'
                     placeholderTextColor='#1c1c1c'
                     style={styles.inputText}
                     onChangeText={itemHandler}
@@ -28,16 +28,16 @@ export default function InputContainer({ newItem, visible, cancelItemInput }) {
                 />
                 <View style={styles.buttonContainer}>
                     <View style={styles.button}>
-                        <Button 
+                        <Button
                             title="CANCEL"
                             color={Platform.OS === 'android' ? Colors.grey : Colors.paleYellow}
                             onPress={cancelItemInput}
                         />
                     </View>
                     <View style={styles.button}>
-                        <Button 
+                        <Button
                             color={Colors.palePurple}
-                            title='ADD' 
+                            title='ADD'
                             onPress={buttonTouch}
                         />
                     </View>
