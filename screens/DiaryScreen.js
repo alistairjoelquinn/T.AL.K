@@ -89,10 +89,7 @@ const DiaryScreen = props => {
         }
     ];
     const dispatch = useDispatch();
-    const calendarData = useSelector(state => {
-        console.log('state: ', state);
-        return state.calendar && state.calendar.calendarData
-    });
+    const calendarData = useSelector(state => state.calendar && state.calendar.calendarData);
     const [weekOne, setWeekOne] = useState(true);
 
     const { navigation } = props;

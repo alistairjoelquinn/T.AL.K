@@ -15,6 +15,10 @@ export const authenticate = (userId, token, refreshToken) => {
     };
 };
 
+export const autoLogin = () => {
+
+};
+
 export const login = (email, password) => {
     return async dispatch => {
         const response = await fetch(`${loginURL}=${webAPI}`

@@ -3,7 +3,7 @@ import { View, ActivityIndicator, StyleSheet, AsyncStorage } from 'react-native'
 import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
-import { authenticate } from '../store/actions/auth';
+import { authenticate, autoLogin } from '../store/actions/auth';
 
 const StartUpScreen = props => {
     const dispatch = useDispatch();
@@ -23,10 +23,11 @@ const StartUpScreen = props => {
             }
             const transformedData = JSON.parse(userData);
             const { token, userId, expiryDate, refreshToken } = transformedData;
+            console.log('transformedData: ', transformedData);
             const expirationDate = new Date(expiryDate);
             if (expirationDate <= new Date() || !token || !userId) {
                 props.navigation.navigate('Login');
-                return;
+                dispatch(autoLogin(userId, token, refreshToken));
             }
             const expirationTime = expirationDate.getTime() - new Date().getTime();
             props.navigation.navigate('Main');
