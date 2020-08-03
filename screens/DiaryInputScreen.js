@@ -90,7 +90,7 @@ const DiaryInputScren = props => {
         <View style={styles.screen}>
             {emptyFields &&
                 <View style={styles.centered}>
-                    <Text>Please fill out all fields!</Text>
+                    <Text style={styles.error}>Please fill out all fields!</Text>
                 </View>
             }
             {emptyFields || <View style={styles.centered}>
@@ -192,6 +192,10 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly'
+    },
+    error: {
+        fontSize: 30,
+        color: 'white'
     }
 });
 

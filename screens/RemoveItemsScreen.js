@@ -11,7 +11,7 @@ const RemoveItemsScreen = props => {
     const activitiesToday = useSelector(state => state.calendar.removeItems);
     const dispatch = useDispatch();
     if (activitiesToday.length < 1) {
-        props.navigation.goBack();
+        props.navigation.popToTop();
     }
 
     const removeItem = activity => {

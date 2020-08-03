@@ -1,18 +1,18 @@
 import { AsyncStorage } from 'react-native';
-
 import { webAPI, loginURL } from '../../secrets.json';
 
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOGOUT = "LOGOUT";
 
-export const authenticate = (userId, token) => {
+export const authenticate = (userId, token, refreshToken) => {
     return dispatch => {
         dispatch({
             type: AUTHENTICATE,
             userId: userId,
-            token: token
+            token: token,
+            refreshToken: refreshToken
         });
-    }
+    };
 };
 
 export const login = (email, password) => {
@@ -41,7 +41,8 @@ export const login = (email, password) => {
         }
 
         const resData = await response.json();
-        dispatch(authenticate(resData.localId, resData.idToken));
+        console.log('resData: ', resData);
+        dispatch(authenticate(resData.localId, resData.idToken, resData.refreshToken));
         const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000);
         saveDataToStorage(resData.idToken, resData.localId, expirationDate);
     };
