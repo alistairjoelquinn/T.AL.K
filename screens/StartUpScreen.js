@@ -23,7 +23,6 @@ const StartUpScreen = props => {
             }
             const transformedData = JSON.parse(userData);
             const { token, userId, expiryDate, refreshToken } = transformedData;
-            console.log('transformedData: ', transformedData);
             const expirationDate = new Date(expiryDate);
             if (expirationDate <= new Date() || !token || !userId) {
                 props.navigation.navigate('Login');

@@ -15,8 +15,14 @@ export const authenticate = (userId, token, refreshToken) => {
     };
 };
 
-export const autoLogin = () => {
-
+export const autoLogin = (userId, token, refreshToken) => {
+    console.log('userId, token, refreshToken: ', userId, token, refreshToken);
+    return async (dispatch, getState) => {
+        const token = getState().auth.refreshToken;
+        const response = await fetch(`https://securetoken.googleapis.com/v1/token?key=${token}`);
+        const resData = await response.json();
+        console.log('resData in autoLogin: ', resData);
+    }
 };
 
 export const login = (email, password) => {
