@@ -59,26 +59,41 @@ const DiaryInputScren = props => {
     const [date, setDate] = useState(day ? day : '');
     const [time, setTime] = useState('');
     const [activity, setActivity] = useState('');
+    const [emptyFields, setEmptyFields] = useState(false);
     const { navigation } = props;
 
     const inputSaveHandler = useCallback(() => {
-        let calendarItem = {
-            name: name,
-            date: date,
-            time: time,
-            activity: activity
-        };
-        dispatch(addCalendarItem(calendarItem));
-        navigation.pop();
+        if (name && time && activity && day || name && date && time && activity) {
+            let calendarItem = {
+                name: name,
+                date: date,
+                time: time,
+                activity: activity
+            };
+            dispatch(addCalendarItem(calendarItem));
+            navigation.pop();
+        } else {
+            emptyFieldsHandler();
+        }
     }, [name, date, time, activity]);
 
     useEffect(() => {
         navigation.setParams({ today: day, submit: inputSaveHandler });
     }, [day, inputSaveHandler]);
 
+    const emptyFieldsHandler = () => {
+        setEmptyFields(true);
+        setTimeout(() => setEmptyFields(false), 1500);
+    }
+
     return (
         <View style={styles.screen}>
-            <View style={styles.centered}>
+            {emptyFields &&
+                <View style={styles.centered}>
+                    <Text>Please fill out all fields!</Text>
+                </View>
+            }
+            {emptyFields || <View style={styles.centered}>
                 {!day && <CalendarPicker onDateChange={value => setDate(getMoment(value))} />}
                 <View style={{ marginTop: 30 }}>
                     {person
@@ -114,7 +129,7 @@ const DiaryInputScren = props => {
                         />
                     }
                 </View>
-            </View>
+            </View>}
         </View>
     );
 }
