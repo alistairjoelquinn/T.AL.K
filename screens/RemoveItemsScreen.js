@@ -10,6 +10,9 @@ import { removeCalendarItem } from '../store/actions/calendar';
 const RemoveItemsScreen = props => {
     const activitiesToday = useSelector(state => state.calendar.removeItems);
     const dispatch = useDispatch();
+    if (activitiesToday.length < 1) {
+        props.navigation.goBack();
+    }
 
     const removeItem = activity => {
         Alert.alert(
@@ -21,13 +24,18 @@ const RemoveItemsScreen = props => {
                     style: "cancel"
                 },
                 {
-                    text: "Yes", onPress: () =>
-                        dispatch(removeCalendarItem(activity))
+                    text: "Yes", onPress: () => {
+                        dispatch(removeCalendarItem(activity));
+                    }
                 }
             ],
             { cancelable: true }
         );
     };
+
+    if (activitiesToday.length < 1) {
+        return null;
+    }
 
     return (
         <LinearGradient
