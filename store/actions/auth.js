@@ -30,9 +30,9 @@ export const autoLogin = (userId, token, refreshToken) => {
         });
         const resData = await response.json();
         console.log('resData in autoLogin: ', resData);
-        dispatch(authenticate(resData.localId, resData.idToken, resData.refreshToken));
-        const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000);
-        saveDataToStorage(resData.idToken, resData.localId, expirationDate, resData.refreshToken);
+        dispatch(authenticate(resData.user_id, resData.id_token, resData.refresh_token));
+        const expirationDate = new Date(new Date().getTime() + parseInt(resData.expires_in) * 1000);
+        saveDataToStorage(resData.id_token, resData.user_id, expirationDate, resData.refresh_token);
     }
 };
 
