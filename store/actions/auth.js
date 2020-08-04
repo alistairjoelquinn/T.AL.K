@@ -17,9 +17,19 @@ export const authenticate = (userId, token, refreshToken) => {
 
 export const autoLogin = (userId, token, refreshToken) => {
     console.log('userId, token, refreshToken: ', userId, token, refreshToken);
-    return async (dispatch, getState) => {
-        const token = getState().auth.refreshToken;
-        const response = await fetch(`https://securetoken.googleapis.com/v1/token?key=${token}`);
+    return async dispatch => {
+        console.log('about to fetch');
+        const response = await fetch(`https://securetoken.googleapis.com/v1/token?key=${webAPI}`, {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: JSON.stringify({
+                grant_type: "refresh_token",
+                refresh_token: refreshToken
+            })
+        });
+        console.log('after the fetch');
         const resData = await response.json();
         console.log('resData in autoLogin: ', resData);
     }
