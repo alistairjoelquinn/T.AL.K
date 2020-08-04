@@ -25,12 +25,12 @@ const StartUpScreen = props => {
             const { token, userId, expiryDate, refreshToken } = transformedData;
             const expirationDate = new Date(expiryDate);
             if (expirationDate <= new Date() || !token || !userId) {
-                props.navigation.navigate('Login');
                 dispatch(autoLogin(userId, token, refreshToken));
+            } else {
+                const expirationTime = expirationDate.getTime() - new Date().getTime();
+                dispatch(authenticate(userId, token, expirationTime, refreshToken));
             }
-            const expirationTime = expirationDate.getTime() - new Date().getTime();
             props.navigation.navigate('Main');
-            dispatch(authenticate(userId, token, expirationTime, refreshToken));
         }
         tryLogin();
     }, [dispatch])

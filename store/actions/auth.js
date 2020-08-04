@@ -18,7 +18,6 @@ export const authenticate = (userId, token, refreshToken) => {
 export const autoLogin = (userId, token, refreshToken) => {
     console.log('userId, token, refreshToken: ', userId, token, refreshToken);
     return async dispatch => {
-        console.log('about to fetch');
         const response = await fetch(`https://securetoken.googleapis.com/v1/token?key=${webAPI}`, {
             method: 'POST',
             header: {
@@ -29,9 +28,11 @@ export const autoLogin = (userId, token, refreshToken) => {
                 refresh_token: refreshToken
             })
         });
-        console.log('after the fetch');
         const resData = await response.json();
         console.log('resData in autoLogin: ', resData);
+        dispatch(authenticate(resData.localId, resData.idToken, resData.refreshToken));
+        const expirationDate = new Date(new Date().getTime() + parseInt(resData.expiresIn) * 1000);
+        saveDataToStorage(resData.idToken, resData.localId, expirationDate, resData.refreshToken);
     }
 };
 
