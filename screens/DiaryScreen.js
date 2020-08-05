@@ -90,6 +90,7 @@ const DiaryScreen = props => {
     ];
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.token);
+    console.log('token in diary screen: ', token);
     const calendarData = useSelector(state => {
         // console.log('state: ', state);
         return state.calendar && state.calendar.calendarData
@@ -104,7 +105,12 @@ const DiaryScreen = props => {
         };
         navigation.setParams({ quit: logger });
         if (token !== null) {
-            dispatch(fetchCalendarItems());
+            try {
+                dispatch(fetchCalendarItems());
+            } catch (err) {
+                console.log('we are in the DS useeffect');
+                navigation.navigate('Main');
+            }
         }
     }, [dispatch, token]);
 
