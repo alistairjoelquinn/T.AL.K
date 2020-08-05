@@ -122,7 +122,7 @@ const DiaryInputScren = props => {
                     {removeItems &&
                         <Button
                             title="Remove Items?"
-                            color="white"
+                            color={Platform.OS === 'ios' ? 'white' : 'black'}
                             onPress={() => {
                                 props.navigation.navigate('RemoveItems');
                             }}
