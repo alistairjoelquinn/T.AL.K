@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet, AsyncStorage } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import { authenticate, autoLogin } from '../store/actions/auth';
 
 const StartUpScreen = props => {
     const dispatch = useDispatch();
+    const token = useSelector(state => state.auth.token);
+    console.log('token: ', token);
 
     useEffect(() => {
         const tryLogin = async () => {
@@ -25,15 +27,19 @@ const StartUpScreen = props => {
             const { token, userId, expiryDate, refreshToken } = transformedData;
             const expirationDate = new Date(expiryDate);
             if (expirationDate <= new Date() || !token || !userId) {
+                console.log('Auto login fired');
                 dispatch(autoLogin(userId, token, refreshToken));
             } else {
                 const expirationTime = expirationDate.getTime() - new Date().getTime();
                 dispatch(authenticate(userId, token, expirationTime, refreshToken));
             }
-            props.navigation.navigate('Main');
+            if (token) {
+                console.log('navigating to main');
+                props.navigation.navigate('Main');
+            }
         }
         tryLogin();
-    }, [dispatch])
+    }, [dispatch, token])
 
     return (
         <View style={styles.screen}>
