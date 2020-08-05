@@ -8,7 +8,7 @@ import { authenticate, autoLogin } from '../store/actions/auth';
 const StartUpScreen = props => {
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.token);
-    console.log('token: ', token);
+    console.log('token in start up: ', token);
 
     useEffect(() => {
         const tryLogin = async () => {
@@ -33,7 +33,7 @@ const StartUpScreen = props => {
                 const expirationTime = expirationDate.getTime() - new Date().getTime();
                 dispatch(authenticate(userId, token, expirationTime, refreshToken));
             }
-            if (token) {
+            if (token !== null) {
                 console.log('navigating to main');
                 props.navigation.navigate('Main');
             }

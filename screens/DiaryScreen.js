@@ -89,6 +89,7 @@ const DiaryScreen = props => {
         }
     ];
     const dispatch = useDispatch();
+    const token = useSelector(state => state.auth.token);
     const calendarData = useSelector(state => {
         // console.log('state: ', state);
         return state.calendar && state.calendar.calendarData
@@ -102,8 +103,10 @@ const DiaryScreen = props => {
             navigation.navigate('StartUp');
         };
         navigation.setParams({ quit: logger });
-        dispatch(fetchCalendarItems());
-    }, [dispatch]);
+        if (token !== null) {
+            dispatch(fetchCalendarItems());
+        }
+    }, [dispatch, token]);
 
     return (
         <LinearGradient
