@@ -15,7 +15,7 @@ export default function ToDoScreen({ navigation }) {
     const [error, setError] = useState();
     const [isRefreshing, setIsRefreshing] = useState(false);
     dispatch = useDispatch();
-    const list = useSelector(state => { 
+    const list = useSelector(state => {
         return state.toDo.toDoList;
     });
     const [modalVisible, setModalVisible] = useState(false);
@@ -25,9 +25,13 @@ export default function ToDoScreen({ navigation }) {
         setIsRefreshing(true);
         try {
             await dispatch(fetchListItems());
-        } catch(err) {
+        } catch (err) {
             setError(err.message);
-        } 
+            setTimeout(() => {
+                console.log('redirectly to startup for re-authentication');
+                navigation.navigate('StartUp');
+            }, 1000);
+        }
         setIsRefreshing(false);
     }, [dispatch, setIsLoading, setError]);
 
@@ -37,9 +41,9 @@ export default function ToDoScreen({ navigation }) {
             setIsLoading(false);
         });
     }, [dispatch, loadProducts])
-   
+
     const newItem = item => {
-        if(item.length === 0 || item === '') {
+        if (item.length === 0 || item === '') {
             return;
         }
         dispatch(addToDoItem(item));
@@ -54,8 +58,9 @@ export default function ToDoScreen({ navigation }) {
                     text: "No",
                     style: "cancel"
                 },
-                { text: "Yes", onPress: () =>  
-                    dispatch(removeToDoItem(itemId))
+                {
+                    text: "Yes", onPress: () =>
+                        dispatch(removeToDoItem(itemId))
                 }
             ],
             { cancelable: true }
@@ -66,15 +71,15 @@ export default function ToDoScreen({ navigation }) {
         setModalVisible(false);
     }
     useEffect(() => {
-        navigation.setParams({toggle: setModalVisible});
+        navigation.setParams({ toggle: setModalVisible });
     }, []);
 
-    if(error) {
+    if (error) {
         return (
             <View style={styles.centered}>
-                <Text style={{color: Colors.paleText}}>An error has occurred!</Text>
-                <Button 
-                    title="Try Again!" 
+                <Text style={{ color: Colors.paleText }}>An error has occurred!</Text>
+                <Button
+                    title="Try Again!"
                     onPress={loadProducts}
                     color={Colors.paleText}
                 />
@@ -82,21 +87,21 @@ export default function ToDoScreen({ navigation }) {
         );
     }
 
-    if(list.length === 0 && !modalVisible && isLoading) {
+    if (list.length === 0 && !modalVisible && isLoading) {
         return (
             <View style={styles.centered}>
-                <ActivityIndicator  
-                    size='large' 
+                <ActivityIndicator
+                    size='large'
                     color={Colors.paleText}
                 />
             </View>
         );
     }
 
-    if(list.length === 0 && !modalVisible) {
+    if (list.length === 0 && !modalVisible) {
         return (
             <View style={styles.centered}>
-                <Text style={{color: Colors.paleText}}>List current empty!</Text>
+                <Text style={{ color: Colors.paleText }}>List current empty!</Text>
             </View>
         );
     }
@@ -105,15 +110,15 @@ export default function ToDoScreen({ navigation }) {
         <LinearGradient
             colors={['dimgrey', Colors.grey]}
             style={styles.gradient}
-        >   
+        >
             <View style={styles.screen}>
-                <InputContainer 
+                <InputContainer
                     newItem={newItem}
                     visible={modalVisible}
                     cancelItemInput={cancelItemInput}
                 />
-                <FlatList 
-                    data={list} 
+                <FlatList
+                    data={list}
                     refreshControl={
                         <RefreshControl
                             onRefresh={loadProducts}
@@ -122,19 +127,19 @@ export default function ToDoScreen({ navigation }) {
                         />
                     }
                     keyExtractor={item => item.key}
-                    renderItem={({item, index}) =>    
-                        <InputItem 
+                    renderItem={({ item, index }) =>
+                        <InputItem
                             onDelete={() => {
                                 removeItem(item.key);
                             }}
                             content={item.item}
-                            color={index % 2 === 0 
-                                ? 
-                                    {borderColor: Colors.paleYellow} 
-                                : 
-                                    {borderColor: Colors.palePurple}
+                            color={index % 2 === 0
+                                ?
+                                { borderColor: Colors.paleYellow }
+                                :
+                                { borderColor: Colors.palePurple }
                             }
-                        /> 
+                        />
                     }
                 />
             </View>
@@ -147,12 +152,12 @@ ToDoScreen.navigationOptions = navData => {
     return {
         headerTitle: 'To Do List',
         headerRight: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item 
-                title='Input' 
-                iconName={'ios-add'} 
+            <Item
+                title='Input'
+                iconName={'ios-add'}
                 onPress={() => {
                     toggle(true);
-                }} 
+                }}
             />
         </HeaderButtons>
     };

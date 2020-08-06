@@ -27,6 +27,10 @@ export default function ShoppingScreen({ navigation }) {
         } catch (err) {
             console.log('err getting shopping items: ', err);
             setError(err.message);
+            setTimeout(() => {
+                console.log('redirectly to startup for re-authentication');
+                navigation.navigate('StartUp');
+            }, 1000);
         }
         setIsRefreshing(false);
     }, [dispatch, setIsLoading, setError]);

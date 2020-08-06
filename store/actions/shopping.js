@@ -9,9 +9,9 @@ export const fetchShoppingListItems = () => {
         const token = getState().auth.token;
         try {
             const response = await fetch(`${dbLinkShopping}?auth=${token}`);
-            if(!response.ok) throw new Error('Something went wrong!!');
+            if (!response.ok) throw new Error('Something went wrong!!');
             const resData = await response.json();
-            const dataList = [  ]
+            const dataList = []
             for (const key in resData) {
                 let newItem = {
                     item: resData[key].item,
@@ -23,7 +23,7 @@ export const fetchShoppingListItems = () => {
                 type: SET_SHOPPING_LIST,
                 list: dataList
             });
-        } catch(err) {
+        } catch (err) {
             console.log('err fetching shopping list items from db: ', err);
             throw err
         }
@@ -49,7 +49,7 @@ export const addShoppingItem = item => {
                 item: item,
                 key: resData.name
             });
-        } catch(err) {
+        } catch (err) {
             console.log('err adding item to shopping list in db: ', err);
             throw err
         }
@@ -62,7 +62,7 @@ export const removeShoppingItem = item => {
         const response = await fetch(`${dbLinkShoppingRemove}${item}.json?auth=${token}`, {
             method: 'DELETE'
         });
-        if(!response.ok) throw new Error('Something went wrong');
+        if (!response.ok) throw new Error('Something went wrong');
         dispatch({
             type: REMOVE_SHOPPING_ITEM,
             item

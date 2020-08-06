@@ -8,7 +8,6 @@ import { authenticate, autoLogin } from '../store/actions/auth';
 const StartUpScreen = props => {
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.token);
-    console.log('token in start up: ', token);
 
     useEffect(() => {
         const tryLogin = async () => {
@@ -27,14 +26,12 @@ const StartUpScreen = props => {
             const { token, userId, expiryDate, refreshToken } = transformedData;
             const expirationDate = new Date(expiryDate);
             if (expirationDate <= new Date() || !token || !userId) {
-                console.log('Auto login fired');
                 dispatch(autoLogin(userId, token, refreshToken));
             } else {
                 const expirationTime = expirationDate.getTime() - new Date().getTime();
                 dispatch(authenticate(userId, token, expirationTime, refreshToken));
             }
             if (token !== null) {
-                console.log('navigating to main');
                 props.navigation.navigate('Main');
             }
         }
