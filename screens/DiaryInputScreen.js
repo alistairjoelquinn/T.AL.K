@@ -13,12 +13,17 @@ import { addCalendarItem } from '../store/actions/calendar';
 const DropdownName = props => {
     return (
         <RNPickerSelect
-            style={{
-                ...pickerSelectStyles, placeholder: {
+            style={Platform.OS === 'ios' ? {
+                ...pickerSelectStyles.inputIOS, placeholder: {
                     color: '#1c1c1c',
                     fontSize: 20,
                 }
-            }}
+            } : {
+                    ...pickerSelectStyles.inputAndroid, placeholder: {
+                        color: '#1c1c1c',
+                        fontSize: 20,
+                    }
+                }}
             placeholder={{ label: 'Choose a person...' }}
             placeholderTextColor="red"
             onValueChange={value => props.setName(value)}
@@ -34,12 +39,17 @@ const DropdownName = props => {
 const DropdownTime = props => {
     return (
         <RNPickerSelect
-            style={{
-                ...pickerSelectStyles, placeholder: {
+            style={Platform.OS === 'ios' ? {
+                ...pickerSelectStyles.inputIOS, placeholder: {
                     color: '#1c1c1c',
                     fontSize: 20,
                 }
-            }}
+            } : {
+                    ...pickerSelectStyles.inputAndroid, placeholder: {
+                        color: '#1c1c1c',
+                        fontSize: 20,
+                    }
+                }}
             placeholder={{ label: 'Choose a time...' }}
             placeholderTextColor="red"
             onValueChange={value => props.setTime(value)}
@@ -113,20 +123,22 @@ const DiaryInputScren = props => {
                         <DropdownTime setTime={setTime} />
                     </View>
                     <TextInput
-                        numberOfLines={4}
+                        numberOfLines={Platform.OS === 'ios' ? 4 : 1}
                         placeholder="What's happening?"
                         placeholderTextColor='#1c1c1c'
                         style={styles.inputText}
                         onChangeText={value => setActivity(value)}
                     />
                     {removeItems &&
-                        <Button
-                            title="Remove Items?"
-                            color={Platform.OS === 'ios' ? 'white' : 'black'}
-                            onPress={() => {
-                                props.navigation.navigate('RemoveItems');
-                            }}
-                        />
+                        <View style={styles.button}>
+                            <Button
+                                title="Remove Items?"
+                                color={Platform.OS === 'ios' ? 'white' : 'black'}
+                                onPress={() => {
+                                    props.navigation.navigate('RemoveItems');
+                                }}
+                            />
+                        </View>
                     }
                 </View>
             </View>}
@@ -196,6 +208,12 @@ const styles = StyleSheet.create({
     error: {
         fontSize: 30,
         color: 'white'
+    },
+    button: {
+        borderRadius: 20,
+        width: '60%',
+        overflow: 'hidden',
+        alignSelf: 'center',
     }
 });
 
