@@ -20,6 +20,8 @@ export default [
     { label: '15:00', value: '15:00', key: 19 },
     { label: '15:30', value: '15:30', key: 20 },
     { label: '16:00', value: '16:00', key: 21 },
+    { label: '16:30', value: '16:00', key: 21 },
+    { label: '17:00', value: '16:00', key: 21 },
     { label: '17:30', value: '17:30', key: 22 },
     { label: '18:00', value: '18:00', key: 23 },
     { label: '18:30', value: '18:30', key: 24 },
@@ -29,5 +31,5 @@ export default [
     { label: '20:30', value: '20:30', key: 28 },
     { label: '21:00', value: '21:00', key: 29 },
     { label: '21:30', value: '21:30', key: 30 },
-    { label: '22:00', value: '22:00', key: 31 }  
+    { label: '22:00', value: '22:00', key: 31 }
 ];

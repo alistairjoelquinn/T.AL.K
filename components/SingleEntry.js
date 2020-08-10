@@ -55,6 +55,7 @@ const SingleEntry = props => {
 
     const activitiesToday = props.calendarData
         .filter(entry => entry.item.date === props.dayInput && entry.item.name === props.personInput)
+        .sort((a, b) => a.item.time.localeCompare(b.item.time))
         .sort((a, b) => a.item.time.split(':')[0] - b.item.time.split(':')[0]);
 
     return (
