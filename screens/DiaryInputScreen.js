@@ -13,17 +13,12 @@ import { addCalendarItem } from '../store/actions/calendar';
 const DropdownName = props => {
     return (
         <RNPickerSelect
-            style={Platform.OS === 'ios' ? {
-                ...pickerSelectStyles.inputIOS, placeholder: {
+            style={{
+                ...pickerSelectStyles, placeholder: {
                     color: '#1c1c1c',
                     fontSize: 20,
                 }
-            } : {
-                    ...pickerSelectStyles.inputAndroid, placeholder: {
-                        color: '#1c1c1c',
-                        fontSize: 20,
-                    }
-                }}
+            }}
             placeholder={{ label: 'Choose a person...' }}
             placeholderTextColor="red"
             onValueChange={value => props.setName(value)}
@@ -39,17 +34,12 @@ const DropdownName = props => {
 const DropdownTime = props => {
     return (
         <RNPickerSelect
-            style={Platform.OS === 'ios' ? {
-                ...pickerSelectStyles.inputIOS, placeholder: {
+            style={{
+                ...pickerSelectStyles, placeholder: {
                     color: '#1c1c1c',
                     fontSize: 20,
                 }
-            } : {
-                    ...pickerSelectStyles.inputAndroid, placeholder: {
-                        color: '#1c1c1c',
-                        fontSize: 20,
-                    }
-                }}
+            }}
             placeholder={{ label: 'Choose a time...' }}
             placeholderTextColor="red"
             onValueChange={value => props.setTime(value)}
