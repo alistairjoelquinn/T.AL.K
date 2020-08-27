@@ -17,74 +17,74 @@ const DiaryScreen = props => {
     const colorList = [
         {
             colorDayCalc: moment(new Date()).format('dddd'),
-            day: moment(new Date()).calendar().split(" at")[0],
+            day: moment(new Date()).calendar().split(" at")[0] + ' ' + moment(new Date()).format('Do'),
             dayInput: moment(new Date()).format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
-            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0],
+            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0] + ' ' + moment(new Date()).format('Do'),
             dayInput: moment(new Date()).add(1, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(2, 'day').format('dddd'),
-            day: moment(new Date()).add(2, 'day').format('dddd'),
+            day: moment(new Date()).add(2, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(2, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(3, 'day').format('dddd'),
-            day: moment(new Date()).add(3, 'day').format('dddd'),
+            day: moment(new Date()).add(3, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(3, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(4, 'day').format('dddd'),
-            day: moment(new Date()).add(4, 'day').format('dddd'),
+            day: moment(new Date()).add(4, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(4, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(5, 'day').format('dddd'),
-            day: moment(new Date()).add(5, 'day').format('dddd'),
+            day: moment(new Date()).add(5, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(5, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
-            day: moment(new Date()).add(6, 'day').format('dddd'),
+            day: moment(new Date()).add(6, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(6, 'day').format('dddd Do MMMM YYYY')
         }
     ];
     const colorList2 = [
         {
             colorDayCalc: moment(new Date()).format('dddd'),
-            day: moment(new Date()).add(7, 'day').format('dddd'),
+            day: moment(new Date()).add(7, 'day').format('dddd') + ' ' + moment(new Date()).format('Do'),
             dayInput: moment(new Date()).add(7, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
-            day: moment(new Date()).add(8, 'day').format('dddd'),
+            day: moment(new Date()).add(8, 'day').format('dddd') + ' ' + moment(new Date()).format('Do'),
             dayInput: moment(new Date()).add(8, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(2, 'day').format('dddd'),
-            day: moment(new Date()).add(9, 'day').format('dddd'),
+            day: moment(new Date()).add(9, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(9, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(3, 'day').format('dddd'),
-            day: moment(new Date()).add(10, 'day').format('dddd'),
+            day: moment(new Date()).add(10, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(10, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(4, 'day').format('dddd'),
-            day: moment(new Date()).add(11, 'day').format('dddd'),
+            day: moment(new Date()).add(11, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(11, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(5, 'day').format('dddd'),
-            day: moment(new Date()).add(12, 'day').format('dddd'),
+            day: moment(new Date()).add(12, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(12, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(6, 'day').format('dddd'),
-            day: moment(new Date()).add(13, 'day').format('dddd'),
+            day: moment(new Date()).add(13, 'day').format('dddd Do'),
             dayInput: moment(new Date()).add(13, 'day').format('dddd Do MMMM YYYY')
         }
     ];

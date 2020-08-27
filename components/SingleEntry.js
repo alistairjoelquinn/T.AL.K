@@ -69,11 +69,7 @@ const SingleEntry = props => {
             borderWidth: 3,
         }}>
             {props.first && <Text style={styles.text}>
-                {
-                    (props.day === 'Today' || props.day === 'Tomorrow') ?
-                        props.day :
-                        props.day.slice(0, 3)
-                }
+                {props.day}
             </Text>}
             {activitiesToday.length > 0
                 ?

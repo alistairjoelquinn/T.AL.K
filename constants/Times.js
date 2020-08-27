@@ -15,7 +15,7 @@ export default [
     { label: '12:30', value: '12:30', key: 14 },
     { label: '13:00', value: '13:00', key: 15 },
     { label: '13:30', value: '13:30', key: 16 },
-    { label: '14:00', value: '14:30', key: 17 },
+    { label: '14:00', value: '14:00', key: 17 },
     { label: '14:30', value: '14:30', key: 18 },
     { label: '15:00', value: '15:00', key: 19 },
     { label: '15:30', value: '15:30', key: 20 },
