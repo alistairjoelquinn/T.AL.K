@@ -22,7 +22,7 @@ const DiaryScreen = props => {
         },
         {
             colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
-            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0] + ' ' + moment(new Date()).format('Do'),
+            day: moment(new Date()).add(1, 'day').calendar().split(" at")[0] + ' ' + moment(new Date()).add(1, 'day').format('Do'),
             dayInput: moment(new Date()).add(1, 'day').format('dddd Do MMMM YYYY')
         },
         {
@@ -54,12 +54,12 @@ const DiaryScreen = props => {
     const colorList2 = [
         {
             colorDayCalc: moment(new Date()).format('dddd'),
-            day: moment(new Date()).add(7, 'day').format('dddd') + ' ' + moment(new Date()).format('Do'),
+            day: moment(new Date()).add(7, 'day').format('dddd') + ' ' + moment(new Date()).add(7, 'day').format('Do'),
             dayInput: moment(new Date()).add(7, 'day').format('dddd Do MMMM YYYY')
         },
         {
             colorDayCalc: moment(new Date()).add(1, 'day').format('dddd'),
-            day: moment(new Date()).add(8, 'day').format('dddd') + ' ' + moment(new Date()).format('Do'),
+            day: moment(new Date()).add(8, 'day').format('dddd') + ' ' + moment(new Date()).add(8, 'day').format('Do'),
             dayInput: moment(new Date()).add(8, 'day').format('dddd Do MMMM YYYY')
         },
         {
