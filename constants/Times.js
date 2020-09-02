@@ -31,5 +31,6 @@ export default [
     { label: '20:30', value: '20:30', key: 28 },
     { label: '21:00', value: '21:00', key: 29 },
     { label: '21:30', value: '21:30', key: 30 },
-    { label: '22:00', value: '22:00', key: 31 }
+    { label: '22:00', value: '22:00', key: 31 },
+    { label: '22:30', value: '22:30', key: 32 }
 ];
